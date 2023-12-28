@@ -1,0 +1,21 @@
+{
+	"food": [
+		{
+			"name": "Cherry",
+			"value": 5,
+			"icon": null
+		},
+		{
+			"name": "Haggis",
+			"value": 5,
+			"icon": null
+		}
+	],
+	"tools": [
+		{
+			"name": "Axe",
+			"value": 25,
+			"icon": null
+		}
+	]
+}

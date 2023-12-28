@@ -1,0 +1,67 @@
+{
+	"islands": [
+		{
+			"name": "Barnacle",
+			"location": [],
+			"size": 9,
+			"seed": 127,
+			"settlements": ["Barnacle"]
+		},
+		{
+			"name": "Bongaly Dunk",
+			"location": [],
+			"size": 4,
+			"seed": 0,
+			"settlements": ["Dunk Shrine/Bongle Thump"]
+		},
+		{
+			"name": "Font Isle",
+			"location": [],
+			"size": 3,
+			"seed": 0,
+			"settlements": []
+		},
+		{
+			"name": "Mound",
+			"location": [],
+			"size": 11,
+			"seed": 5,
+			"settlements": []
+		},
+		{
+			"name": "Far Slosh",
+			"location": [],
+			"size": 7,
+			"seed": 16,
+			"settlements": []
+		},
+		{
+			"name": "Far Pines",
+			"location": [],
+			"size": 7,
+			"seed": 58,
+			"settlements": ["Far Pines"]
+		},
+		{
+			"name": "Cauldron Melt",
+			"location": [],
+			"size": 5,
+			"seed": 58,
+			"settlements": ["Meltwater"]
+		},
+		{
+			"name": "Float",
+			"location": [],
+			"size": 8,
+			"seed": 72,
+			"settlements": []
+		},
+		{
+			"name": "Cinder",
+			"location": [],
+			"size": 7,
+			"seed": 148,
+			"settlements": ["Pyre"]
+		}
+	]
+}
