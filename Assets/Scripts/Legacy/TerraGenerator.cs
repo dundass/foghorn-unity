@@ -8,21 +8,21 @@ using UnityEngine.Tilemaps;
 public class TerraGenerator : MonoBehaviour {
 
     private class IslandData {
-        public int[] location; // Vector2 ?
+        public Vector2Int location;
         public int[,] seeds;
-        public IslandData(int[] location, int[,] seeds) {
+        public IslandData(Vector2Int location, int[,] seeds) {
             this.location = location;
             this.seeds = seeds;
         }
     }
 
     private IslandData[] islandData = {
-        new IslandData(new int[]{ 272, 137 }, new int[,]{ }), new IslandData(new int[]{ 300, 164 }, new int[,]{ }), new IslandData(new int[]{ 308, 192 }, new int[,]{}), new IslandData(new int[]{ 222, 132 }, new int[,]{}), new IslandData(new int[]{ 120, 79 }, new int[,]{}),
-        new IslandData(new int[]{ 181, 27 }, new int[,]{ }), new IslandData(new int[]{ 347, 184 }, new int[,]{}), new IslandData(new int[]{ 129, 120 }, new int[,]{}), new IslandData(new int[]{ 265, 74 }, new int[,]{}), new IslandData(new int[]{ 95, 31 }, new int[,]{}),
-        new IslandData(new int[]{ 68, 50 }, new int[,]{}), new IslandData(new int[]{ 303, 71 }, new int[,]{}), new IslandData(new int[]{ 309, 135 }, new int[,]{}), new IslandData(new int[]{ 291, 140 }, new int[,]{}), new IslandData(new int[]{ 209, 101 }, new int[,]{}),
-        new IslandData(new int[]{ 283, 185 }, new int[,]{}), new IslandData(new int[]{ 124, 105 }, new int[,]{}), new IslandData(new int[]{ 157, 33 }, new int[,]{}), new IslandData(new int[]{ 356, 165 }, new int[,]{}), new IslandData(new int[]{ 123, 103 }, new int[,]{}),
-        new IslandData(new int[]{ 217, 183 }, new int[,]{}), new IslandData(new int[]{ 30, 63 }, new int[,]{}), new IslandData(new int[]{ 324, 190 }, new int[,]{}), new IslandData(new int[]{ 44, 32 }, new int[,]{}), new IslandData(new int[]{ 317, 67 }, new int[,]{}),
-        new IslandData(new int[]{ 89, 134 }, new int[,]{}), new IslandData(new int[]{ 138, 21 }, new int[,]{}), new IslandData(new int[]{ 249, 157 }, new int[,]{}), new IslandData(new int[]{ 331, 165 }, new int[,]{}), new IslandData(new int[]{ 207, 30 }, new int[,]{})
+        new IslandData(new Vector2Int( 272, 137 ), new int[,]{ }), new IslandData(new Vector2Int( 300, 164 ), new int[,]{ }), new IslandData(new Vector2Int( 308, 192 ), new int[,]{}), new IslandData(new Vector2Int( 222, 132 ), new int[,]{}), new IslandData(new Vector2Int( 120, 79 ), new int[,]{}),
+        new IslandData(new Vector2Int( 181, 27 ), new int[,]{ }), new IslandData(new Vector2Int( 347, 184 ), new int[,]{}), new IslandData(new Vector2Int( 129, 120 ), new int[,]{}), new IslandData(new Vector2Int( 265, 74 ), new int[,]{}), new IslandData(new Vector2Int( 95, 31 ), new int[,]{}),
+        new IslandData(new Vector2Int( 68, 50 ), new int[,]{}), new IslandData(new Vector2Int( 303, 71 ), new int[,]{}), new IslandData(new Vector2Int( 309, 135 ), new int[,]{}), new IslandData(new Vector2Int( 291, 140 ), new int[,]{}), new IslandData(new Vector2Int( 209, 101 ), new int[,]{}),
+        new IslandData(new Vector2Int( 283, 185 ), new int[,]{}), new IslandData(new Vector2Int( 124, 105 ), new int[,]{}), new IslandData(new Vector2Int( 157, 33 ), new int[,]{}), new IslandData(new Vector2Int( 356, 165 ), new int[,]{}), new IslandData(new Vector2Int( 123, 103 ), new int[,]{}),
+        new IslandData(new Vector2Int( 217, 183 ), new int[,]{}), new IslandData(new Vector2Int( 30, 63 ), new int[,]{}), new IslandData(new Vector2Int( 324, 190 ), new int[,]{}), new IslandData(new Vector2Int( 44, 32 ), new int[,]{}), new IslandData(new Vector2Int( 317, 67 ), new int[,]{}),
+        new IslandData(new Vector2Int( 89, 134 ), new int[,]{}), new IslandData(new Vector2Int( 138, 21 ), new int[,]{}), new IslandData(new Vector2Int( 249, 157 ), new int[,]{}), new IslandData(new Vector2Int( 331, 165 ), new int[,]{}), new IslandData(new Vector2Int( 207, 30 ), new int[,]{})
     };
 
     public Tilemap groundTilemap; // poss make separate WorldRenderer
@@ -38,7 +38,7 @@ public class TerraGenerator : MonoBehaviour {
     public GameObject denizenParent;
     public GameObject denizenPrefab;
 
-    public Island[] islands;
+    public ProceduralIsland[] islands;
     public Transform player;
 
     public enum blocktypes {
@@ -96,7 +96,7 @@ public class TerraGenerator : MonoBehaviour {
             ruleSet = islandRuleset
         };
 
-        islands = new Island[30];
+        islands = new ProceduralIsland[30];
 
         generateWorld();
 
@@ -146,8 +146,8 @@ public class TerraGenerator : MonoBehaviour {
         Debug.Log("starting island initialisation ...");
 
         for (int i = 0; i < islands.Length; i++) {
-            islands[i] = new Island(
-                new Vector2(islandData[i].location[0], islandData[i].location[1]),
+            islands[i] = new ProceduralIsland(
+                islandData[i].location,
                 chunkCA.getXsize(),
                 rnd.Next(3, 10),
                 rnd.Next(4, 7),

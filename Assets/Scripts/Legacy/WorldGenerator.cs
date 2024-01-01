@@ -25,7 +25,7 @@ public class WorldGenerator : MonoBehaviour {
     public TileBase cragTile;
     public TileBase peakTile;
 
-    public Island[] islands;
+    public ProceduralIsland[] islands;
     public Transform player;
 
     public enum blocktypes {
@@ -54,7 +54,7 @@ public class WorldGenerator : MonoBehaviour {
             ruleSet = groundTileRuleset
         };
 
-        islands = new Island[30];
+        islands = new ProceduralIsland[30];
 
         generateWorld();
 
@@ -96,7 +96,7 @@ public class WorldGenerator : MonoBehaviour {
         for (int i = 0; i < islands.Length; i++) {
             //var x = 20 + ((float)rnd.NextDouble() * (ca.getXsize() - 40));
             //var y = 20 + ((float)rnd.NextDouble() * (ca.getXsize() - 40));
-            islands[i] = new Island(
+            islands[i] = new ProceduralIsland(
                 new Vector2(islandLocations[i, 0], islandLocations[i, 1]),
                 ca.getXsize(),
                 rnd.Next(0, 9),

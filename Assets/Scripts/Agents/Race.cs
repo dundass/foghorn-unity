@@ -29,7 +29,7 @@ public class Race {
     public skinColours skinColour;
     public hairColours hairColour;
 
-    public Island origin;   // y/n? it might be that a race is much older than the current arrangement of islands so maybe not this
+    public ProceduralIsland origin;   // y/n? it might be that a race is much older than the current arrangement of islands so maybe not this
 
     public Race(string name, skinColours skinColour, hairColours hairColour) {
         this.name = name;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Island {
+public class ProceduralIsland {
 
     public string name { get; set; }
     public Vector2 location { get; }
@@ -12,7 +12,7 @@ public class Island {
     public int[,] seeds { get; }
     private float maxSeedDist = 0.01f;
     
-    public Island (Vector2 loc, int grid_size, int growth_delay, int lagoon_threshold, int[,] seeds) {
+    public ProceduralIsland (Vector2 loc, int grid_size, int growth_delay, int lagoon_threshold, int[,] seeds) {
 
         location = loc;
         //Debug.Log(loc.x + ", " + loc.y);
