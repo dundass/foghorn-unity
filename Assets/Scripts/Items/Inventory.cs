@@ -12,15 +12,15 @@ public class Inventory : MonoBehaviour {
 
     public void Add(IItem item) {
         items.Add(item);
-        checkDelegates();
+        CheckDelegates();
     }
 
     public void Remove(IItem item) {
         items.Remove(item);
-        checkDelegates();
+        CheckDelegates();
     }
 
-    private void checkDelegates() {
+    private void CheckDelegates() {
         if (onItemChangedCallback != null)
             onItemChangedCallback.Invoke();
     }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 [System.Serializable]
 public class Stat {
 
+    // todo - int rather than float ?
     // todo - serialize might not be needed as loading characters from data, not changing in unity editor
     // todo - StatModifier class to give them a name ...
     // also - probs shouldn't iterate modifiers every time u get value ...
@@ -12,20 +13,20 @@ public class Stat {
     [SerializeField]
     private float baseValue;
 
-    private List<float> modifiers = new List<float>();
+    private List<float> _modifiers = new List<float>();
 
-    public float getValue() {
+    public float GetValue() {
         float finalValue = baseValue;
-        modifiers.ForEach(x => finalValue += x);
+        _modifiers.ForEach(x => finalValue += x);
         return baseValue;
     }
 
-    public void addModifier(float mod) {
-        if (mod != 0) modifiers.Add(mod);
+    public void AddModifier(float mod) {
+        if (mod != 0) _modifiers.Add(mod);
     }
 
-    public void removeModifier(float mod) {
-        if (mod != 0) modifiers.Remove(mod);
+    public void RemoveModifier(float mod) {
+        if (mod != 0) _modifiers.Remove(mod);
     }
 
 }

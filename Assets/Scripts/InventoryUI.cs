@@ -5,6 +5,7 @@ public class InventoryUI : MonoBehaviour {
     public Transform itemsParent;
     public GameObject gameManager;
     public Sprite testItemSprite;
+    public Food testItem;
 
     Inventory inventory;
 
@@ -19,10 +20,10 @@ public class InventoryUI : MonoBehaviour {
 
         DataLoader data = gameManager.GetComponent<DataLoader>();
 
-        IItem testItem = new Food();
+        /*IItem testItem = new Food();
         testItem.name = "Haggis";
         testItem.value = 5;
-        testItem.icon = testItemSprite;
+        testItem.icon = testItemSprite;*/
         inventory.Add(testItem);
         //Food dataTestItem = Instantiate(data.itemTypes.food[0]);
         //inventory.Add(dataTestItem)
