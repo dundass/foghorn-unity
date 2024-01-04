@@ -5,7 +5,7 @@ public class InventoryUI : MonoBehaviour {
     public Transform itemsParent;
     public GameObject gameManager;
     public Sprite testItemSprite;
-    public Food testItem;
+    public Consumable testItem;
 
     Inventory inventory;
 

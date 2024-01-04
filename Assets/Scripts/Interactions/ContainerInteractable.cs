@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Inventory))]
 public class ContainerInteractable : MonoBehaviour, IInteractable
 {
-    [SerializeField] List<IItem> items = new List<IItem>();
+    [SerializeField] List<Item> items = new List<Item>();
 
     private Inventory _inventory;
 
@@ -13,7 +13,7 @@ public class ContainerInteractable : MonoBehaviour, IInteractable
     {
         _inventory = GetComponent<Inventory>();
         
-        foreach(IItem item in items)
+        foreach(Item item in items)
         {
             _inventory.Add(item);
         }

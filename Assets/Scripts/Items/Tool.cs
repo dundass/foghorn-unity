@@ -1,14 +1,12 @@
 ﻿using UnityEngine;
 
-public class Tool : MonoBehaviour, IItem {
+[CreateAssetMenu(fileName = "New Tool", menuName = "Items/Tool")]
+public class Tool : Item {
 
-    new public string name { get; set; }
-    public float value { get; set; }
-    public Sprite icon { get; set; }
+    public IEffect effect; // maybe ?
 
-    void Init() {
-
+    public override void Use()
+    {
+        base.Use();
     }
-
-    // use() - should all items have a use method ? or do i need to create Usable, Wearable, Consumable etc interfaces ?
 }

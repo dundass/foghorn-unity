@@ -33,7 +33,7 @@ public class DataLoader : MonoBehaviour {
 
 [System.Serializable]
 public class ItemTypes {
-    public Food[] food;
+    public Consumable[] food;
     public Tool[] tools;
 
     public static ItemTypes CreateFromJSON(string jsonString) {

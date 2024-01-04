@@ -6,7 +6,7 @@ public class CellularTexture : MonoBehaviour {
 
     CA2D ca;
 
-    SpriteRenderer renderer;
+    new SpriteRenderer renderer;
 
     void Start() {
         ca = new CA2D(32, 32);

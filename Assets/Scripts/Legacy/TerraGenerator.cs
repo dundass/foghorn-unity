@@ -58,7 +58,7 @@ public class TerraGenerator : MonoBehaviour {
         // other for specific features eg ruins
 
     private int blockSize = 10;
-    private int tileSize = 16;
+    //private int tileSize = 16;
 
     System.Random rnd = new System.Random(System.DateTime.Now.Millisecond);
 
