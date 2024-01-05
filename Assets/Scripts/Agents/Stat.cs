@@ -6,7 +6,6 @@ using System.Collections.Generic;
 public class Stat {
 
     // todo - int rather than float ?
-    // todo - serialize might not be needed as loading characters from data, not changing in unity editor
     // todo - StatModifier class to give them a name ...
     // also - probs shouldn't iterate modifiers every time u get value ...
 

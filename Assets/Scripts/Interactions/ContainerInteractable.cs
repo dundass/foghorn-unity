@@ -5,15 +5,14 @@ using UnityEngine;
 [RequireComponent(typeof(Inventory))]
 public class ContainerInteractable : MonoBehaviour, IInteractable
 {
-    [SerializeField] List<Item> items = new List<Item>();
-
+    private List<Item> _items = new List<Item>();
     private Inventory _inventory;
 
     private void Start()
     {
         _inventory = GetComponent<Inventory>();
         
-        foreach(Item item in items)
+        foreach(Item item in _items)
         {
             _inventory.Add(item);
         }

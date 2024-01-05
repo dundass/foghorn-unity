@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5426255214265038493}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.4}
+  m_LocalPosition: {x: 0, y: 0, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8527090650601160343}
@@ -43,8 +43,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.72725403, b: 0.4198113, a: 1}
-  m_Intensity: 1
-  m_Range: 50
+  m_Intensity: 1.25
+  m_Range: 5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -104,9 +104,10 @@ GameObject:
   - component: {fileID: 7833776810315466721}
   - component: {fileID: 4100421748741806102}
   - component: {fileID: 6213931597442986036}
+  - component: {fileID: 8004020223587228375}
   m_Layer: 0
   m_Name: Denizen
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -138,6 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a89ff0763c5cd184392477f17d4ff444, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heritage: []
   inventory: {fileID: 0}
 --- !u!114 &4100421748741806102
 MonoBehaviour:
@@ -151,8 +153,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0059601b08fc38499d94264f80c8395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health:
-    baseValue: 100
+  maxHealth: 100
+  damage:
+    baseValue: 0
+  armour:
+    baseValue: 0
 --- !u!212 &6213931597442986036
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -203,3 +208,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!70 &8004020223587228375
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5598445580029891771}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.06881201}
+  m_Size: {x: 0.4, y: 0.862376}
+  m_Direction: 0

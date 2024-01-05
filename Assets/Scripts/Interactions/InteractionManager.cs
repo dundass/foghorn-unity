@@ -7,6 +7,14 @@ public class InteractionManager : MonoBehaviour
     //[SerializeField] GameObject interactButton;
     private IInteractable _focussedInteractable;
 
+    private void Update()
+    {
+        if(Input.GetButtonDown("Fire1") && CanInteract())
+        {
+            InitiateInteraction();
+        }
+    }
+
     public bool CanInteract()
     {
         return _focussedInteractable != null;

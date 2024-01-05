@@ -25,7 +25,8 @@ public class GameManager : MonoBehaviour
     }
 
     // references to all the core systems here
-    //public TerrainManager Terrain { get; set; }
+    public PlayerStats PlayerStats { get; set; }
+    public WorldClock WorldClock { get; set; }
 
     void Awake()
     {

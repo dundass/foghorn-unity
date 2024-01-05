@@ -3,7 +3,7 @@
 public class InventoryUI : MonoBehaviour {
 
     public Transform itemsParent;
-    public GameObject gameManager;
+    //public GameObject gameManager;
     public Sprite testItemSprite;
     public Consumable testItem;
 
@@ -18,7 +18,7 @@ public class InventoryUI : MonoBehaviour {
 
         slots = itemsParent.GetComponentsInChildren<InventorySlot>();
 
-        DataLoader data = gameManager.GetComponent<DataLoader>();
+        //DataLoader data = gameManager.GetComponent<DataLoader>();
 
         /*IItem testItem = new Food();
         testItem.name = "Haggis";

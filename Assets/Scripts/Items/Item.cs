@@ -10,4 +10,10 @@ public class Item : ScriptableObject
     {
         // nothing ?
     }
+
+    public void RemoveFromInventory()
+    {
+        // get player inventory
+        // remove item
+    }
 }

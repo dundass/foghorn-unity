@@ -4,23 +4,30 @@ using UnityEngine;
 
 public class PlayerStats : CharacterStats
 {
-    private void Start()
+    public Inventory inventory;
+
+    private void Awake()
     {
-        // EquipmentManager.Instance.onEquipmentChanged += OnEquipmentChanged;
+        GameManager.Instance.PlayerStats = this;
     }
 
-    private void OnEquipmentChanged(/* Wearable newItem, Wearable oldItem */)
+    private void Start()
     {
-        /*if(newItem != null)
+        WearableManager.Instance.onWearablesChanged += OnWearablesChanged;
+    }
+
+    private void OnWearablesChanged(Wearable newItem, Wearable oldItem)
+    {
+        if(newItem != null)
         {
-            armour.AddModifier(newItem.armourModifier);
-            damage.AddModifier(newItem.damageModifier);
+            //armour.AddModifier(newItem.armourModifier);
+            //damage.AddModifier(newItem.damageModifier);
         }
 
         if (oldItem != null)
         {
-            armour.RemoveModifier(oldItem.armourModifier);
-            damage.RemoveModifier(oldItem.damageModifier);
-        }*/
+            //armour.RemoveModifier(oldItem.armourModifier);
+            //damage.RemoveModifier(oldItem.damageModifier);
+        }
     }
 }

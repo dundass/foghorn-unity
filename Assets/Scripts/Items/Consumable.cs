@@ -9,6 +9,6 @@ public class Consumable : Item {
     public override void Use() {
         base.Use();
         // apply effects
-        // remove from inventory
+        RemoveFromInventory();
     }
 }

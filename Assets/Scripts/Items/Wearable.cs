@@ -10,6 +10,8 @@ public class Wearable : Item
     public override void Use()
     {
         base.Use();
+        WearableManager.Instance.Equip(this);
+        RemoveFromInventory();
     }
 }
 
