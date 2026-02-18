@@ -519,7 +519,7 @@ TextureImporter:
       213: 21300342
     second: tileset_16x16_final_1_171
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -536,9 +536,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -570,10 +573,15 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -585,6 +593,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   - serializedVersion: 3
@@ -597,6 +606,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   - serializedVersion: 3
@@ -609,6 +619,20 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
@@ -4236,9 +4260,181 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    nameFileIdTable:
+      tileset_16x16_final_1_0: 21300000
+      tileset_16x16_final_1_1: 21300002
+      tileset_16x16_final_1_10: 21300020
+      tileset_16x16_final_1_100: 21300200
+      tileset_16x16_final_1_101: 21300202
+      tileset_16x16_final_1_102: 21300204
+      tileset_16x16_final_1_103: 21300206
+      tileset_16x16_final_1_104: 21300208
+      tileset_16x16_final_1_105: 21300210
+      tileset_16x16_final_1_106: 21300212
+      tileset_16x16_final_1_107: 21300214
+      tileset_16x16_final_1_108: 21300216
+      tileset_16x16_final_1_109: 21300218
+      tileset_16x16_final_1_11: 21300022
+      tileset_16x16_final_1_110: 21300220
+      tileset_16x16_final_1_111: 21300222
+      tileset_16x16_final_1_112: 21300224
+      tileset_16x16_final_1_113: 21300226
+      tileset_16x16_final_1_114: 21300228
+      tileset_16x16_final_1_115: 21300230
+      tileset_16x16_final_1_116: 21300232
+      tileset_16x16_final_1_117: 21300234
+      tileset_16x16_final_1_118: 21300236
+      tileset_16x16_final_1_119: 21300238
+      tileset_16x16_final_1_12: 21300024
+      tileset_16x16_final_1_120: 21300240
+      tileset_16x16_final_1_121: 21300242
+      tileset_16x16_final_1_122: 21300244
+      tileset_16x16_final_1_123: 21300246
+      tileset_16x16_final_1_124: 21300248
+      tileset_16x16_final_1_125: 21300250
+      tileset_16x16_final_1_126: 21300252
+      tileset_16x16_final_1_127: 21300254
+      tileset_16x16_final_1_128: 21300256
+      tileset_16x16_final_1_129: 21300258
+      tileset_16x16_final_1_13: 21300026
+      tileset_16x16_final_1_130: 21300260
+      tileset_16x16_final_1_131: 21300262
+      tileset_16x16_final_1_132: 21300264
+      tileset_16x16_final_1_133: 21300266
+      tileset_16x16_final_1_134: 21300268
+      tileset_16x16_final_1_135: 21300270
+      tileset_16x16_final_1_136: 21300272
+      tileset_16x16_final_1_137: 21300274
+      tileset_16x16_final_1_138: 21300276
+      tileset_16x16_final_1_139: 21300278
+      tileset_16x16_final_1_14: 21300028
+      tileset_16x16_final_1_140: 21300280
+      tileset_16x16_final_1_141: 21300282
+      tileset_16x16_final_1_142: 21300284
+      tileset_16x16_final_1_143: 21300286
+      tileset_16x16_final_1_144: 21300288
+      tileset_16x16_final_1_145: 21300290
+      tileset_16x16_final_1_146: 21300292
+      tileset_16x16_final_1_147: 21300294
+      tileset_16x16_final_1_148: 21300296
+      tileset_16x16_final_1_149: 21300298
+      tileset_16x16_final_1_15: 21300030
+      tileset_16x16_final_1_150: 21300300
+      tileset_16x16_final_1_151: 21300302
+      tileset_16x16_final_1_152: 21300304
+      tileset_16x16_final_1_153: 21300306
+      tileset_16x16_final_1_154: 21300308
+      tileset_16x16_final_1_155: 21300310
+      tileset_16x16_final_1_156: 21300312
+      tileset_16x16_final_1_157: 21300314
+      tileset_16x16_final_1_158: 21300316
+      tileset_16x16_final_1_159: 21300318
+      tileset_16x16_final_1_16: 21300032
+      tileset_16x16_final_1_160: 21300320
+      tileset_16x16_final_1_161: 21300322
+      tileset_16x16_final_1_162: 21300324
+      tileset_16x16_final_1_163: 21300326
+      tileset_16x16_final_1_164: 21300328
+      tileset_16x16_final_1_165: 21300330
+      tileset_16x16_final_1_166: 21300332
+      tileset_16x16_final_1_167: 21300334
+      tileset_16x16_final_1_168: 21300336
+      tileset_16x16_final_1_169: 21300338
+      tileset_16x16_final_1_17: 21300034
+      tileset_16x16_final_1_170: 21300340
+      tileset_16x16_final_1_171: 21300342
+      tileset_16x16_final_1_18: 21300036
+      tileset_16x16_final_1_19: 21300038
+      tileset_16x16_final_1_2: 21300004
+      tileset_16x16_final_1_20: 21300040
+      tileset_16x16_final_1_21: 21300042
+      tileset_16x16_final_1_22: 21300044
+      tileset_16x16_final_1_23: 21300046
+      tileset_16x16_final_1_24: 21300048
+      tileset_16x16_final_1_25: 21300050
+      tileset_16x16_final_1_26: 21300052
+      tileset_16x16_final_1_27: 21300054
+      tileset_16x16_final_1_28: 21300056
+      tileset_16x16_final_1_29: 21300058
+      tileset_16x16_final_1_3: 21300006
+      tileset_16x16_final_1_30: 21300060
+      tileset_16x16_final_1_31: 21300062
+      tileset_16x16_final_1_32: 21300064
+      tileset_16x16_final_1_33: 21300066
+      tileset_16x16_final_1_34: 21300068
+      tileset_16x16_final_1_35: 21300070
+      tileset_16x16_final_1_36: 21300072
+      tileset_16x16_final_1_37: 21300074
+      tileset_16x16_final_1_38: 21300076
+      tileset_16x16_final_1_39: 21300078
+      tileset_16x16_final_1_4: 21300008
+      tileset_16x16_final_1_40: 21300080
+      tileset_16x16_final_1_41: 21300082
+      tileset_16x16_final_1_42: 21300084
+      tileset_16x16_final_1_43: 21300086
+      tileset_16x16_final_1_44: 21300088
+      tileset_16x16_final_1_45: 21300090
+      tileset_16x16_final_1_46: 21300092
+      tileset_16x16_final_1_47: 21300094
+      tileset_16x16_final_1_48: 21300096
+      tileset_16x16_final_1_49: 21300098
+      tileset_16x16_final_1_5: 21300010
+      tileset_16x16_final_1_50: 21300100
+      tileset_16x16_final_1_51: 21300102
+      tileset_16x16_final_1_52: 21300104
+      tileset_16x16_final_1_53: 21300106
+      tileset_16x16_final_1_54: 21300108
+      tileset_16x16_final_1_55: 21300110
+      tileset_16x16_final_1_56: 21300112
+      tileset_16x16_final_1_57: 21300114
+      tileset_16x16_final_1_58: 21300116
+      tileset_16x16_final_1_59: 21300118
+      tileset_16x16_final_1_6: 21300012
+      tileset_16x16_final_1_60: 21300120
+      tileset_16x16_final_1_61: 21300122
+      tileset_16x16_final_1_62: 21300124
+      tileset_16x16_final_1_63: 21300126
+      tileset_16x16_final_1_64: 21300128
+      tileset_16x16_final_1_65: 21300130
+      tileset_16x16_final_1_66: 21300132
+      tileset_16x16_final_1_67: 21300134
+      tileset_16x16_final_1_68: 21300136
+      tileset_16x16_final_1_69: 21300138
+      tileset_16x16_final_1_7: 21300014
+      tileset_16x16_final_1_70: 21300140
+      tileset_16x16_final_1_71: 21300142
+      tileset_16x16_final_1_72: 21300144
+      tileset_16x16_final_1_73: 21300146
+      tileset_16x16_final_1_74: 21300148
+      tileset_16x16_final_1_75: 21300150
+      tileset_16x16_final_1_76: 21300152
+      tileset_16x16_final_1_77: 21300154
+      tileset_16x16_final_1_78: 21300156
+      tileset_16x16_final_1_79: 21300158
+      tileset_16x16_final_1_8: 21300016
+      tileset_16x16_final_1_80: 21300160
+      tileset_16x16_final_1_81: 21300162
+      tileset_16x16_final_1_82: 21300164
+      tileset_16x16_final_1_83: 21300166
+      tileset_16x16_final_1_84: 21300168
+      tileset_16x16_final_1_85: 21300170
+      tileset_16x16_final_1_86: 21300172
+      tileset_16x16_final_1_87: 21300174
+      tileset_16x16_final_1_88: 21300176
+      tileset_16x16_final_1_89: 21300178
+      tileset_16x16_final_1_9: 21300018
+      tileset_16x16_final_1_90: 21300180
+      tileset_16x16_final_1_91: 21300182
+      tileset_16x16_final_1_92: 21300184
+      tileset_16x16_final_1_93: 21300186
+      tileset_16x16_final_1_94: 21300188
+      tileset_16x16_final_1_95: 21300190
+      tileset_16x16_final_1_96: 21300192
+      tileset_16x16_final_1_97: 21300194
+      tileset_16x16_final_1_98: 21300196
+      tileset_16x16_final_1_99: 21300198
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

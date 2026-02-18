@@ -303,7 +303,7 @@ TextureImporter:
       213: 7314416641566021723
     second: tiny-16_99
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -320,9 +320,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -354,10 +357,15 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -369,6 +377,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -381,6 +390,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -393,6 +403,20 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -2508,9 +2532,109 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    nameFileIdTable:
+      tiny-16_0: -7104304454255247975
+      tiny-16_1: -7015982060085250145
+      tiny-16_10: -5146968007845525754
+      tiny-16_11: 4410731758945303488
+      tiny-16_12: -8717400342019785628
+      tiny-16_13: 2213585370685830254
+      tiny-16_14: 6537848502074921994
+      tiny-16_15: 8039730798621597472
+      tiny-16_16: 1108981456888921921
+      tiny-16_17: 1973715190164702913
+      tiny-16_18: 1500368423613049808
+      tiny-16_19: -4649100200053801981
+      tiny-16_2: -5072348247227291161
+      tiny-16_20: 4302236807389971678
+      tiny-16_21: 2708140949717572002
+      tiny-16_22: 5942591746598787300
+      tiny-16_23: -4143991440595381076
+      tiny-16_24: -5181844476695537485
+      tiny-16_25: 2572122920335154756
+      tiny-16_26: -6580535284816942917
+      tiny-16_27: 3495836395624406374
+      tiny-16_28: -5821474304657956357
+      tiny-16_29: 5951444865188631214
+      tiny-16_3: -4953718843913780734
+      tiny-16_30: -9139226616697922767
+      tiny-16_31: 4483482856494483285
+      tiny-16_32: -8408997953331301226
+      tiny-16_33: -7674751569022360030
+      tiny-16_34: 7046386358666034517
+      tiny-16_35: -3423854054951398169
+      tiny-16_36: -1467698119033053311
+      tiny-16_37: 3009153242006735222
+      tiny-16_38: 572905682444426706
+      tiny-16_39: -4478461266051598558
+      tiny-16_4: -6153085757335893090
+      tiny-16_40: -4134727748161913221
+      tiny-16_41: 5395063048105478186
+      tiny-16_42: 6005171625408077079
+      tiny-16_43: 1673417556478505182
+      tiny-16_44: 6292896910318385009
+      tiny-16_45: 7958909377295855340
+      tiny-16_46: -6711681278188131267
+      tiny-16_47: -4248228083745719735
+      tiny-16_48: 3376894887258090286
+      tiny-16_49: 5288221333832280364
+      tiny-16_5: -4983527827670608814
+      tiny-16_50: -1712507528676540136
+      tiny-16_51: -8425496420401016900
+      tiny-16_52: 5597174919750064423
+      tiny-16_53: -8898212722925857516
+      tiny-16_54: -1205828277567628967
+      tiny-16_55: -8839196098517885664
+      tiny-16_56: 2153566690134729667
+      tiny-16_57: -2196240782050312034
+      tiny-16_58: 568149939980007474
+      tiny-16_59: 4793265631411796397
+      tiny-16_6: -4496349088939737493
+      tiny-16_60: 262633157302925925
+      tiny-16_61: 5033517846948094246
+      tiny-16_62: -901952741115365027
+      tiny-16_63: -6138430053326088139
+      tiny-16_64: 6172626772019224106
+      tiny-16_65: 2976653050545220469
+      tiny-16_66: 6630270403434331680
+      tiny-16_67: -4024104346140863325
+      tiny-16_68: 2570242902355681842
+      tiny-16_69: 2740486014128092833
+      tiny-16_7: -2280884281926575958
+      tiny-16_70: -5484828969277042413
+      tiny-16_71: 8702167169178067774
+      tiny-16_72: 2442799968099796331
+      tiny-16_73: -4962586102631150224
+      tiny-16_74: -5043193131235894893
+      tiny-16_75: 4165599903056188740
+      tiny-16_76: -1531019972479307727
+      tiny-16_77: 3330701167610382162
+      tiny-16_78: 918727637403653383
+      tiny-16_79: 8972132258032794264
+      tiny-16_8: 421000779323473624
+      tiny-16_80: -7422386605791684754
+      tiny-16_81: 3413802053682435397
+      tiny-16_82: -4646319192454825504
+      tiny-16_83: -5104290451567954063
+      tiny-16_84: 3448810103355565074
+      tiny-16_85: 1768289061143773078
+      tiny-16_86: -8835531231369652952
+      tiny-16_87: -8648368639913813449
+      tiny-16_88: 4027183207250842807
+      tiny-16_89: 9116472370527238982
+      tiny-16_9: -4980058180006969662
+      tiny-16_90: 6908695999093209305
+      tiny-16_91: 2583117240979439369
+      tiny-16_92: 9166764148299072812
+      tiny-16_93: -6528119579272966408
+      tiny-16_94: -7168917789261532884
+      tiny-16_95: 9004785515048710927
+      tiny-16_96: -6189836742499550645
+      tiny-16_97: -155014065561110541
+      tiny-16_98: 2936446157383926734
+      tiny-16_99: 7314416641566021723
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

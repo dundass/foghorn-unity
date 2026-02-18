@@ -25,6 +25,9 @@ public class TerraGenerator : MonoBehaviour {
         new IslandData(new Vector2Int( 89, 134 ), new int[,]{}), new IslandData(new Vector2Int( 138, 21 ), new int[,]{}), new IslandData(new Vector2Int( 249, 157 ), new int[,]{}), new IslandData(new Vector2Int( 331, 165 ), new int[,]{}), new IslandData(new Vector2Int( 207, 30 ), new int[,]{})
     };
 
+    public int chunkCellIterations = 11;
+    public int upscaleCellIterations = 2;
+
     public Tilemap groundTilemap; // poss make separate WorldRenderer
     public Tilemap overgroundTilemap;
     //public Tilemap overgroundTilemap; // poss make separate WorldRenderer
@@ -161,7 +164,7 @@ public class TerraGenerator : MonoBehaviour {
 
         chunkCA.clear();
         // smaller isles only get seeded after X iterations -> growthDelay
-        for (int i = 0; i < 11; i++) {
+        for (int i = 0; i < chunkCellIterations; i++) {
             for (int n = 0; n < islands.Length; n++) {
                 if (i == islands[n].growthDelay) {
                     for (int j = 0; j < islands[n].seeds.GetLength(0); j++) {
@@ -225,7 +228,7 @@ public class TerraGenerator : MonoBehaviour {
 
         Debug.Log("starting iteration of main CA ...");
 
-        landTileCA.update(2);
+        landTileCA.update(upscaleCellIterations);
 
         Debug.Log("finished iteration of main CA !");
 
