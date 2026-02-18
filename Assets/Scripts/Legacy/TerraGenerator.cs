@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -63,7 +60,7 @@ public class TerraGenerator : MonoBehaviour {
     private int blockSize = 10;
     //private int tileSize = 16;
 
-    System.Random rnd = new System.Random(System.DateTime.Now.Millisecond);
+    System.Random rnd = new System.Random(DateTime.Now.Millisecond);
 
     // Start is called before the first frame update
     void Start() {
@@ -113,8 +110,8 @@ public class TerraGenerator : MonoBehaviour {
 
         Vector3Int pos = new Vector3Int();
 
-        for (int i = 0; i < landTileCA.getXsize(); i++) {
-            for (int j = 0; j < landTileCA.getYsize(); j++) {
+        for (int i = 0; i < landTileCA.GetXsize(); i++) {
+            for (int j = 0; j < landTileCA.GetYsize(); j++) {
                 int chunkX = i / blockSize;
                 int chunkY = j / blockSize;
 
@@ -151,7 +148,7 @@ public class TerraGenerator : MonoBehaviour {
         for (int i = 0; i < islands.Length; i++) {
             islands[i] = new ProceduralIsland(
                 islandData[i].location,
-                chunkCA.getXsize(),
+                chunkCA.GetXsize(),
                 rnd.Next(3, 10),
                 rnd.Next(4, 7),
                 new int[,] { } // add seeds here
@@ -162,7 +159,7 @@ public class TerraGenerator : MonoBehaviour {
 
         Debug.Log("starting island generation ...");
 
-        chunkCA.clear();
+        chunkCA.Clear();
         // smaller isles only get seeded after X iterations -> growthDelay
         for (int i = 0; i < chunkCellIterations; i++) {
             for (int n = 0; n < islands.Length; n++) {
@@ -174,16 +171,16 @@ public class TerraGenerator : MonoBehaviour {
                     }
                 }
             }
-            chunkCA.update();
+            chunkCA.Update();
         }
 
         Debug.Log("finished island generation !");
 
         //removeLagoons(4);
 
-        /*for (int i = 0; i < chunkCA.getXsize(); i++) {
-            for (int j = 0; j < chunkCA.getYsize(); j++) {
-                if (chunkCA.getLiveNeighbours(i, j) == 8 && UnityEngine.Random.value > 0.1f) {
+        /*for (int i = 0; i < chunkCA.GetXsize(); i++) {
+            for (int j = 0; j < chunkCA.GetYsize(); j++) {
+                if (chunkCA.GetLiveNeighbours(i, j) == 8 && UnityEngine.Random.value > 0.1f) {
                     chunkCA.cells[i, j] = 1;
                 }
             }
@@ -195,13 +192,13 @@ public class TerraGenerator : MonoBehaviour {
 
         // set cells of main CA to chunkCA and scale
 
-        for (int i = 0; i < landTileCA.getXsize(); i++) {
-            for (int j = 0; j < landTileCA.getYsize(); j++) {
+        for (int i = 0; i < landTileCA.GetXsize(); i++) {
+            for (int j = 0; j < landTileCA.GetYsize(); j++) {
                 int chunkX = i / blockSize;
                 int chunkY = j / blockSize;
                 //if(Mathf.PerlinNoise(i, j) > 0.5f) {
                 if (chunkCA.cells[chunkX, chunkY] == 0) {
-                    if (chunkCA.getLiveNeighbours(chunkX, chunkY) == 8 && UnityEngine.Random.value > 0.05f) {
+                    if (chunkCA.GetLiveNeighbours(chunkX, chunkY) == 8 && UnityEngine.Random.value > 0.05f) {
                         chunkCA.cells[chunkX, chunkY] = 1;
                     } else {
                         continue;
@@ -228,7 +225,7 @@ public class TerraGenerator : MonoBehaviour {
 
         Debug.Log("starting iteration of main CA ...");
 
-        landTileCA.update(upscaleCellIterations);
+        landTileCA.Update(upscaleCellIterations);
 
         Debug.Log("finished iteration of main CA !");
 
@@ -240,8 +237,8 @@ public class TerraGenerator : MonoBehaviour {
 
         int chunkX, chunkY;
 
-        for (int i = 0; i < landTileCA.getXsize(); i++) {
-            for (int j = 0; j < landTileCA.getYsize(); j++) {
+        for (int i = 0; i < landTileCA.GetXsize(); i++) {
+            for (int j = 0; j < landTileCA.GetYsize(); j++) {
                 chunkX = i / blockSize;
                 chunkY = j / blockSize;
                 if (chunkCA.cells[chunkX, chunkY] == 1) {
@@ -261,15 +258,15 @@ public class TerraGenerator : MonoBehaviour {
         //houseCA.setLambdaRuleset(0.4f);
         Debug.Log("House ruleset: " + string.Join(", ", houseCA.ruleSet));
 
-        houseCA.update(5);
+        houseCA.Update(5);
 
         Debug.Log("finished settlement generation !");
     }
 
     /*private void removeLagoons(int max) {   // doesn't work with neighbourTotals cuz that's from last ca iteration ...
         int[,] buffer = (int[,])ca.cells.Clone();
-        for (int i = 0; i < ca.getXsize(); i++) {
-            for (int j = 0; j < ca.getYsize(); j++) {
+        for (int i = 0; i < ca.GetXsize(); i++) {
+            for (int j = 0; j < ca.GetYsize(); j++) {
                 if (ca.neighbourTotals[i, j] > max && ca.cells[i, j] > 0) buffer[i, j] = UnityEngine.Random.Range(1, ca.numStates - 1);
             }
         }

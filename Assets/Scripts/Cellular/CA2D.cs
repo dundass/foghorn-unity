@@ -20,9 +20,9 @@
 
     }
 
-    public void update() {
-        int xSize = getXsize();
-        int ySize = getYsize();
+    public void Update() {
+        int xSize = GetXsize();
+        int ySize = GetYsize();
         int tot = 0;
 
         int i = 0, j = 0, k = 0, l = 0, m = 0, n = 0;
@@ -53,34 +53,34 @@
         genCount++;
     }
 
-    public void update(int iterations) {
-        for(int i = 0; i < iterations; i++) update();
+    public void Update(int iterations) {
+        for(int i = 0; i < iterations; i++) Update();
     }
 
-    public int getXsize() {
+    public int GetXsize() {
         return cells.GetLength(0);
     }
 
-    public int getYsize() {
+    public int GetYsize() {
         return cells.GetLength(1);
     }
 
-    public int getLiveNeighbours(int x, int y) {
+    public int GetLiveNeighbours(int x, int y) {
         int tot = 0;
         for(int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {
-                if (x + i < 0 || x + i >= getXsize() || y + j < 0 || y + j >= getYsize()) continue;
+                if (x + i < 0 || x + i >= GetXsize() || y + j < 0 || y + j >= GetYsize()) continue;
                 if (cells[x + i, y + j] > 0) tot++;
             }
         }
         return tot;
     }
 
-    public void setRandomStates(double p = 0.5d) {
+    public void SetRandomStates(double p = 0.5d) {
         System.Random rnd = new System.Random(System.DateTime.Now.Millisecond);
         double r = 0;
-        for (int i = 0; i < getXsize(); i++) {
-            for (int j = 0; j < getYsize(); j++) {
+        for (int i = 0; i < GetXsize(); i++) {
+            for (int j = 0; j < GetYsize(); j++) {
                 r = rnd.NextDouble();
                 if (r < p) cells[i,j] = 1 + rnd.Next(0, numStates - 1);
                 else cells[i,j] = 0;
@@ -88,7 +88,7 @@
         }
     }
 
-    public void setLambdaRuleset(double p = 0.38d) {
+    public void SetLambdaRuleset(double p = 0.38d) {
         System.Random rnd = new System.Random(System.DateTime.Now.Millisecond);
         double r = 0;
         ruleSet[0] = 0;
@@ -106,9 +106,9 @@
         }
     }
 
-    public void clear() {
-        for (int i = 0; i < getXsize(); i++) {
-            for (int j = 0; j < getYsize(); j++) {
+    public void Clear() {
+        for (int i = 0; i < GetXsize(); i++) {
+            for (int j = 0; j < GetYsize(); j++) {
                 cells[i, j] = 0;
             }
         }
