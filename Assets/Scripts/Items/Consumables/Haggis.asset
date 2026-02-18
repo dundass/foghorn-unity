@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d75dff8b8ea11d45a9b443f54ea2f20, type: 3}
   m_Name: Haggis
   m_EditorClassIdentifier: 
-  displayName: Haggis
+  _displayName: Haggis
   value: 5
   icon: {fileID: 21300000, guid: 7f32256e6c318bb4d9e99238e581f360, type: 3}
-  effects: []

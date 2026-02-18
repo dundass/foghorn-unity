@@ -2,7 +2,14 @@
 
 public class Item : ScriptableObject
 {
-    public string displayName;
+    [SerializeField]
+    protected string _displayName;
+    public virtual string displayName
+    {
+        get => _displayName;
+        set => _displayName = value;
+    }
+
     public int value;
     public Sprite icon;
 

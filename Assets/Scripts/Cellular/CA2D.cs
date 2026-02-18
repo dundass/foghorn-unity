@@ -49,12 +49,12 @@
                 }
             }
         }
-        cells = (int[,])buffer.Clone();
+        (cells, buffer) = (buffer, cells);
         genCount++;
     }
 
     public void update(int iterations) {
-        for(int i = 0; i < iterations; i++) this.update();
+        for(int i = 0; i < iterations; i++) update();
     }
 
     public int getXsize() {

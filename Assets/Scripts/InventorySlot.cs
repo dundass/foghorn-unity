@@ -31,6 +31,4 @@ public class InventorySlot : MonoBehaviour {
         Text text = inspector.GetComponentInChildren<Text>();
         text.text = item.name;
     }
-    
-
 }

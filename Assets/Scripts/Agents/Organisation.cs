@@ -1,6 +1,4 @@
-﻿using System.Collections;
-
-public class Organisation {
+﻿public class Organisation {
 
     Agenda[] agendas { get; set; }
     IAgent[] members { get; set; }
