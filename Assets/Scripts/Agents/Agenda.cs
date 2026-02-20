@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿// eg Reading, Collecting, Killing, Worshipping, Musicking, Moneymaking, Cooking, Walking
 
 public class Agenda {
 

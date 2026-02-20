@@ -1,19 +1,18 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class CellularTexture : MonoBehaviour {
 
     CA2D ca;
 
-    new SpriteRenderer renderer;
+    SpriteRenderer spriteRenderer;
 
     void Start() {
         ca = new CA2D(32, 32);
-        ca.setLambdaRuleset();
-        ca.setRandomStates();
-        ca.update(3);
-        renderer = GetComponent<SpriteRenderer>();
+        ca.SetLambdaRuleset();
+        ca.SetRandomStates();
+        ca.Update(3);
+        spriteRenderer = GetComponent<SpriteRenderer>();
         Texture2D tex = new Texture2D(32, 32);
         Color color = new Color();
         for (int i = 0; i < tex.width; i++) {
@@ -29,10 +28,6 @@ public class CellularTexture : MonoBehaviour {
 
         Sprite sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), Vector2.one * 0.5f);
 
-        renderer.sprite = sprite;
-    }
-
-    void Update() {
-
+        spriteRenderer.sprite = sprite;
     }
 }

@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 
-public class ModifyHealth : MonoBehaviour, IEffect
+[CreateAssetMenu(fileName = "New ModifyHealth Effect", menuName = "Effects/ModifyHealth")]
+public class ModifyHealth : IEffect
 {
-    public void Apply(GameObject target)
+    public override void Apply(GameObject target)
     {
         CharacterStats stats = target.GetComponent<CharacterStats>();   // todo - make generic for any Stats (and make Stats Interface/abstract class!)
         if (stats != null)

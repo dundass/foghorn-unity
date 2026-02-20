@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class Item : ScriptableObject
 {
@@ -12,6 +13,10 @@ public class Item : ScriptableObject
 
     public int value;
     public Sprite icon;
+    [SerializeField]
+    private List<IEffect> effects = new();
+    
+    public List<IEffect> GetEffects() => effects;
 
     public virtual void Use()
     {

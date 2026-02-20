@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class AddBuff : MonoBehaviour, IEffect
+[CreateAssetMenu(fileName = "New AddBuff Effect", menuName = "Effects/AddBuff")]
+public class AddBuff : IEffect
 {
-    // [SerializeField] Buff buff;  // todo - Buff system. also should this be a list ?
+    // [SerializeField] private Buff buff;  // todo - Buff system. also should this be a list ?
 
-    public void Apply(GameObject target)
+    public override void Apply(GameObject target)
     {
         // todo - Buff system
     }

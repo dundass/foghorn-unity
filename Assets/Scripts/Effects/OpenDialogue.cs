@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 
-public class OpenDialogue : MonoBehaviour, IEffect
+[CreateAssetMenu(fileName = "New OpenDialogue Effect", menuName = "Effects/OpenDialogue")]
+public class OpenDialogue : IEffect
 {
-    //[SerializeField] DialogueStage dialogueStage;
+    //[SerializeField] private DialogueStage dialogueStage;
 
-    public void Apply(GameObject target)
+    public override void Apply(GameObject target)
     {
         // DialogueController.OpenDialogue(dialogueStage)
     }

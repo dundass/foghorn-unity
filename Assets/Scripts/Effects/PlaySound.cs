@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 
-public class PlaySound : MonoBehaviour, IEffect
+[CreateAssetMenu(fileName = "New PlaySound Effect", menuName = "Effects/PlaySound")]
+public class PlaySound : IEffect
 {
-    [SerializeField] AudioSource audioSource;
-    [SerializeField] AudioClip audioClip;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip audioClip;
 
-    public void Apply(GameObject target)
+    public override void Apply(GameObject target)
     {
         audioSource.PlayOneShot(audioClip);
     }

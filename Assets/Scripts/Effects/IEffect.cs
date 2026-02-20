@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public interface IEffect 
+public abstract class IEffect : ScriptableObject
 {
-    void Apply(GameObject target);
+    public abstract void Apply(GameObject target);
 }

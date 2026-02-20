@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class AddItem : MonoBehaviour, IEffect
+[CreateAssetMenu(fileName = "New AddItem Effect", menuName = "Effects/AddItem")]
+public class AddItem : IEffect
 {
-    [SerializeField] List<Item> items = new List<Item>(); // todo - amounts?
+    [SerializeField] private List<Item> items = new List<Item>(); // todo - amounts?
 
-    public void Apply(GameObject target)
+    public override void Apply(GameObject target)
     {
         Inventory inventory = target.GetComponent<Inventory>();
         if(inventory != null)
