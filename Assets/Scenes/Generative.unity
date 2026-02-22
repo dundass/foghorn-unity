@@ -3426,7 +3426,7 @@ MonoBehaviour:
   mountainTiles:
   - {fileID: 11400000, guid: 2d6096e79b8950a4e9432ebd94dc0c7b, type: 2}
   - {fileID: 11400000, guid: d6c152d1b0f82374aba9e787bd3d6b2d, type: 2}
-  - {fileID: 11400000, guid: cf789778bba33d346bd17a0a372a952b, type: 2}
+  - {fileID: 11400000, guid: 2d6096e79b8950a4e9432ebd94dc0c7b, type: 2}
   houseTiles:
   - {fileID: 0}
   - {fileID: 0}

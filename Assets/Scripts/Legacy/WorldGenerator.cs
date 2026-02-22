@@ -97,8 +97,8 @@ public class WorldGenerator : MonoBehaviour {
                 new Vector2(islandLocations[i, 0], islandLocations[i, 1]),
                 ca.GetXsize(),
                 rnd.Next(0, 9),
-                rnd.Next(4, 7),
-                new int[,] { } // add seeds here
+                rnd.Next(4, 7)
+                // add seeds here
             );
         }
 
@@ -107,10 +107,10 @@ public class WorldGenerator : MonoBehaviour {
         for (int i = 0; i < 11; i++) {
             for (int n = 0; n < islands.Length; n++) {
                 if (i == islands[n].growthDelay) {
-                    for (int j = 0; j < islands[n].seeds.GetLength(0); j++) {
-                        ca.cells[(int)islands[n].location.x + islands[n].seeds[j, 0],
-                                 (int)islands[n].location.y + islands[n].seeds[j, 1]] =
-                                 islands[n].seeds[j, 2];
+                    foreach (var seed in islands[n].seeds) {
+                        int x = (int)islands[n].location.x + seed.Key.x;
+                        int y = (int)islands[n].location.y + seed.Key.y;
+                        ca.cells[x, y] = seed.Value;
                     }
                 }
             }

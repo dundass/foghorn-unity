@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class TerraGenerator : MonoBehaviour {
 
@@ -43,7 +41,7 @@ public class TerraGenerator : MonoBehaviour {
         mountain = 3
     }
 
-    public CA2D landTileCA, houseCA, chunkCA;
+    public CA2D landCA, houseCA, chunkCA;
 
     private Dictionary<string, int[]> rulesets = new Dictionary<string, int[]> {
         { "island", new int[] { 0, 0, 3, 0, 3, 0, 2, 0, 3, 3, 3, 2, 3, 0, 3, 0, 0, 1, 2, 0, 0, 2, 2, 0, 1, 3, 0, 0, 0, 0, 3, 0 } },
@@ -67,12 +65,12 @@ public class TerraGenerator : MonoBehaviour {
     void Start() {
 
         // stores all terra tile states
-        landTileCA = new CA2D(10, 384 * blockSize) {
+        landCA = new CA2D(10, 384 * blockSize) {
             ruleSet = rulesets["land"]
         };
 
         // set all rules for uniformly live neighbourhoods to stay at that total
-        for (int i = 0; i < landTileCA.numStates; i++) landTileCA.ruleSet[i * 8] = i;
+        for (int i = 0; i < landCA.numStates; i++) landCA.ruleSet[i * 8] = i;
         //Debug.Log(string.Join(", ", ca.ruleSet));
 
         houseCA = new CA2D(3, 384 * blockSize);
@@ -89,7 +87,7 @@ public class TerraGenerator : MonoBehaviour {
         if (generateSettlements)
             GenerateSettlements(); // todo - this adds 40s+ to startup ...
 
-        worldRenderer.RenderWorld(landTileCA, houseCA);
+        worldRenderer.RenderWorld(landCA, houseCA);
 
         player.position = new Vector3(islands[0].location.x * blockSize, islands[0].location.y * blockSize, 0);
     }
@@ -105,8 +103,8 @@ public class TerraGenerator : MonoBehaviour {
                 islandData[i].location,
                 chunkCA.GetXsize(),
                 rnd.Next(4, 10),
-                rnd.Next(4, 7),
-                new int[,] { } // add seeds here
+                rnd.Next(4, 7)
+                // add seeds here
             );
         }
 
@@ -119,10 +117,10 @@ public class TerraGenerator : MonoBehaviour {
         for (int i = 0; i < chunkCellIterations; i++) {
             for (int n = 0; n < islands.Length; n++) {
                 if (i == islands[n].growthDelay) {
-                    for (int j = 0; j < islands[n].seeds.GetLength(0); j++) {
-                        int x = (int)islands[n].location.x + islands[n].seeds[j, 0];
-                        int y = (int)islands[n].location.y + islands[n].seeds[j, 1];
-                        chunkCA.cells[x, y] = islands[n].seeds[j, 2];
+                    foreach (var seed in islands[n].seeds) {
+                        int x = (int)islands[n].location.x + seed.Key.x;
+                        int y = (int)islands[n].location.y + seed.Key.y;
+                        chunkCA.cells[x, y] = seed.Value;
                     }
                 }
             }
@@ -147,8 +145,8 @@ public class TerraGenerator : MonoBehaviour {
 
         // set cells of land CA to chunkCA and scale
 
-        for (int i = 0; i < landTileCA.GetXsize(); i++) {
-            for (int j = 0; j < landTileCA.GetYsize(); j++) {
+        for (int i = 0; i < landCA.GetXsize(); i++) {
+            for (int j = 0; j < landCA.GetYsize(); j++) {
                 int chunkX = i / blockSize;
                 int chunkY = j / blockSize;
                 //if(Mathf.PerlinNoise(i, j) > 0.5f) {
@@ -162,13 +160,13 @@ public class TerraGenerator : MonoBehaviour {
 
                     // add some noise to the ocean tiles to add variation
                     if(UnityEngine.Random.value > 0.05f) {
-                        landTileCA.cells[i, j] = UnityEngine.Random.Range(0, landTileCA.numStates);
+                        landCA.cells[i, j] = UnityEngine.Random.Range(0, landCA.numStates);
                     }
                 }
 
                 // set the land tile CA cells to the chunk CA cell value * 3 (number of land tile types) + a random number from 0 to 2 
                 if(UnityEngine.Random.value > 0.3f) {
-                    landTileCA.cells[i, j] = (chunkCA.cells[chunkX, chunkY] * 3) + UnityEngine.Random.Range(0, 3);  // maybe distribute so that each large scale cell eg for ground has a mostly uniform value (of either 1, 2 or 3 in case of ground) that is mildly deviated from using perlin noise to the other cell vals for cell type (ground, forest, mountain)
+                    landCA.cells[i, j] = (chunkCA.cells[chunkX, chunkY] * 3) + UnityEngine.Random.Range(0, 3);  // maybe distribute so that each large scale cell eg for ground has a mostly uniform value (of either 1, 2 or 3 in case of ground) that is mildly deviated from using perlin noise to the other cell vals for cell type (ground, forest, mountain)
                 }
                 //else {
                 //    ca.cells[i, j] = (int)(1.0f + (Mathf.PerlinNoise(i, j) * 3.0f));
@@ -183,7 +181,7 @@ public class TerraGenerator : MonoBehaviour {
 
         Debug.Log("starting iteration of main CA ...");
 
-        landTileCA.Update(upscaleCellIterations);
+        landCA.Update(upscaleCellIterations);
 
         Debug.Log("finished iteration of main CA !");
 
@@ -195,8 +193,8 @@ public class TerraGenerator : MonoBehaviour {
 
         int chunkX, chunkY;
 
-        for (int i = 0; i < landTileCA.GetXsize(); i++) {
-            for (int j = 0; j < landTileCA.GetYsize(); j++) {
+        for (int i = 0; i < landCA.GetXsize(); i++) {
+            for (int j = 0; j < landCA.GetYsize(); j++) {
                 chunkX = i / blockSize;
                 chunkY = j / blockSize;
                 if (chunkCA.cells[chunkX, chunkY] == 1) {
