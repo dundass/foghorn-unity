@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -43,38 +44,33 @@ public class TerraGenerator : MonoBehaviour {
     }
 
     public CA2D landTileCA, houseCA, chunkCA;
-    /*private enum rulesets {
-        island = new int[] { 0, 0, 3, 0, 3, 0, 2, 0, 3, 3, 3, 2, 3, 0, 3, 0, 0, 1, 2, 0, 0, 2, 2, 0, 1, 3, 0, 0, 0, 0, 3, 0 }
-    };*/
-    private int[] islandRuleset = { 0, 0, 3, 0, 3, 0, 2, 0, 3, 3, 3, 2, 3, 0, 3, 0, 0, 1, 2, 0, 0, 2, 2, 0, 1, 3, 0, 0, 0, 0, 3, 0 };
-        //groundTileRuleset = { 0, 0, 0, 1, 2, 0, 0, 3, 0, 1, 0, 0, 1, 0, 0, 0, 0, 2, 0, 0, 1, 1, 3, 0, 0, 0, 0, 0, 3, 0, 3, 1 },
-        //          forestTileRuleset = { 0, 0, 0, 1, 0, 0, 1, 3, 3, 0, 1, 0, 2, 3, 0, 0, 3, 1, 0, 2, 3, 3, 0, 3, 3, 2, 0, 0, 3, 3, 0, 0 },
-        //          mountainTileRuleset = { 0, 0, 3, 0, 3, 0, 2, 0, 3, 3, 3, 2, 3, 0, 3, 0, 0, 1, 2, 0, 0, 2, 2, 0, 1, 3, 0, 0, 0, 0, 3, 0 };
+
+    private Dictionary<string, int[]> rulesets = new Dictionary<string, int[]> {
+        { "island", new int[] { 0, 0, 3, 0, 3, 0, 2, 0, 3, 3, 3, 2, 3, 0, 3, 0, 0, 1, 2, 0, 0, 2, 2, 0, 1, 3, 0, 0, 0, 0, 3, 0 } },
+        { "island2", new int[] { 0, 1, 0, 1, 0, 0, 1, 3, 3, 0, 1, 0, 2, 3, 0, 0, 3, 1, 0, 2, 3, 3, 0, 3, 0, 2, 0, 0, 3, 3, 0, 0 } },
+        { "island3", new int[] { 0, 0, 3, 0, 3, 0, 2, 0, 3, 3, 3, 2, 3, 0, 3, 0, 0, 1, 2, 0, 0, 2, 2, 0, 1, 3, 0, 0, 0, 0, 3, 0 } },
+        { "ground", new int[] { 0, 0, 0, 1, 2, 0, 0, 3, 0, 1, 0, 0, 1, 0, 0, 0, 0, 2, 0, 0, 1, 1, 3, 0, 0, 0, 0, 0, 3, 0, 3, 1 } },
+        { "forest", new int[] { 0, 0, 0, 1, 0, 0, 1, 3, 3, 0, 1, 0, 2, 3, 0, 0, 3, 1, 0, 2, 3, 3, 0, 3, 3, 2, 0, 0, 3, 3, 0, 0 } },
+        { "mountain", new int[] { 0, 0, 3, 0, 3, 0, 2, 0, 3, 3, 3, 2, 3, 0, 3, 0, 0, 1, 2, 0, 0, 2, 2, 0, 1, 3, 0, 0, 0, 0, 3, 0 } },
         // other for specific features eg ruins
+        { "land", new int[] { 0, 1, 1, 1, 2, 9, 1, 4, 1, 2, 2, 1, 2, 1, 2, 2, 2, 2, 1, 2, 2, 3, 2, 3, 3, 4, 3, 3, 4, 4, 4, 1, 4, 5, 4, 5, 4, 4, 5, 2, 5, 5, 4, 0, 5, 4, 4, 4, 6, 6, 6, 6, 7, 6, 6, 7, 7, 8, 4, 8, 7, 9, 7, 8, 8, 7, 8, 8, 7, 8, 8, 4, 9, 9, 9, 7, 8, 7, 9, 7 } },
+        { "land2", new int[] { 0, 0, 0, 0, 0, 0, 1, 0, 1, 2, 2, 0, 2, 1, 2, 2, 2, 2, 0, 0, 0, 0, 0, 3, 3, 0, 3, 0, 4, 0, 0, 0, 4, 5, 4, 0, 4, 4, 5, 0, 5, 5, 0, 0, 5, 0, 0, 0, 6, 6, 6, 6, 7, 6, 6, 7, 7, 0, 0, 0, 0, 0, 7, 0, 8, 0, 8, 0, 0, 8, 8, 0, 9, 9, 9, 0, 0, 0, 9, 0 } },
+        { "land3", new int[] { 0, 0, 0, 0, 0, 0, 0, 5, 1, 8, 0, 0, 8, 5, 3, 0, 2, 0, 0, 3, 1, 3, 0, 0, 3, 0, 0, 0, 3, 0, 4, 6, 4, 0, 0, 3, 7, 0, 0, 0, 5, 1, 9, 0, 0, 6, 0, 0, 6, 0, 4, 4, 4, 0, 1, 0, 7, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 9, 0, 7, 0, 0, 9, 0, 0 } },
+        { "land4", new int[] {0,3,0,0,0,0,7,1,1,3,0,3,0,2,0,1,2,2,0,3,0,0,0,4,3,3,9,0,0,0,5,4,4,4,0,0,0,0,0,6,5,4,0,0,6,0,0,6,6,6,2,6,0,0,0,5,7,6,0,0,0,2,0,7,8,7,0,3,2,2,6,8,9,9,0,0,2,1,5,0 } },
+
+        { "house", new int[] { 0, 0, 1, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
+    };
 
     private int blockSize = 10;
-    //private int tileSize = 16;
-
-    System.Random rnd = new System.Random(DateTime.Now.Millisecond);
 
     // Start is called before the first frame update
     void Start() {
 
         // stores all terra tile states
-        /*landTileCA = new CA2D(4, 384 * blockSize) {
-            //ruleSet = new int[] { 0, 1, 0, 1, 0, 0, 1, 3, 3, 0, 1, 0, 2, 3, 0, 0, 3, 1, 0, 2, 3, 3, 0, 3, 0, 2, 0, 0, 3, 3, 0, 0 }
-            //ruleSet = new int[] { 0, 0, 3, 0, 3, 0, 2, 0, 3, 3, 3, 2, 3, 0, 3, 0, 0, 1, 2, 0, 0, 2, 2, 0, 1, 3, 0, 0, 0, 0, 3, 0 }
-            ruleSet = islandRuleset
-        };
-        landTileCA.ruleSet[8] = 1;
-        landTileCA.ruleSet[16] = 2;
-        landTileCA.ruleSet[24] = 3;*/
         landTileCA = new CA2D(10, 384 * blockSize) {
-            //ruleSet = new int[] {0,3,0,0,0,0,7,1,1,3,0,3,0,2,0,1,2,2,0,3,0,0,0,4,3,3,9,0,0,0,5,4,4,4,0,0,0,0,0,6,5,4,0,0,6,0,0,6,6,6,2,6,0,0,0,5,7,6,0,0,0,2,0,7,8,7,0,3,2,2,6,8,9,9,0,0,2,1,5,0 }
-            //ruleSet = new int[] { 0, 0, 0, 0, 0, 0, 0, 5, 1, 8, 0, 0, 8, 5, 3, 0, 2, 0, 0, 3, 1, 3, 0, 0, 3, 0, 0, 0, 3, 0, 4, 6, 4, 0, 0, 3, 7, 0, 0, 0, 5, 1, 9, 0, 0, 6, 0, 0, 6, 0, 4, 4, 4, 0, 1, 0, 7, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 9, 0, 7, 0, 0, 9, 0, 0  }
-            //ruleSet = new int[] { 0, 0, 0, 0, 0, 0, 1, 0, 1, 2, 2, 0, 2, 1, 2, 2, 2, 2, 0, 0, 0, 0, 0, 3, 3, 0, 3, 0, 4, 0, 0, 0, 4, 5, 4, 0, 4, 4, 5, 0, 5, 5, 0, 0, 5, 0, 0, 0, 6, 6, 6, 6, 7, 6, 6, 7, 7, 0, 0, 0, 0, 0, 7, 0, 8, 0, 8, 0, 0, 8, 8, 0, 9, 9, 9, 0, 0, 0, 9, 0 }
-            ruleSet = new int[] { 0, 1, 1, 1, 2, 9, 1, 4, 1, 2, 2, 1, 2, 1, 2, 2, 2, 2, 1, 2, 2, 3, 2, 3, 3, 4, 3, 3, 4, 4, 4, 1, 4, 5, 4, 5, 4, 4, 5, 2, 5, 5, 4, 0, 5, 4, 4, 4, 6, 6, 6, 6, 7, 6, 6, 7, 7, 8, 4, 8, 7, 9, 7, 8, 8, 7, 8, 8, 7, 8, 8, 4, 9, 9, 9, 7, 8, 7, 9, 7 }
+            ruleSet = rulesets["land"]
         };
+
         // set all rules for uniformly live neighbourhoods to stay at that total
         for (int i = 0; i < landTileCA.numStates; i++) landTileCA.ruleSet[i * 8] = i;
         //Debug.Log(string.Join(", ", ca.ruleSet));
@@ -83,7 +79,7 @@ public class TerraGenerator : MonoBehaviour {
 
         // stores all world/island chunk states
         chunkCA = new CA2D(4, 384) {
-            ruleSet = islandRuleset
+            ruleSet = rulesets["island"]
         };
 
         islands = new ProceduralIsland[30];
@@ -108,7 +104,7 @@ public class TerraGenerator : MonoBehaviour {
             islands[i] = new ProceduralIsland(
                 islandData[i].location,
                 chunkCA.GetXsize(),
-                rnd.Next(3, 10),
+                rnd.Next(4, 10),
                 rnd.Next(4, 7),
                 new int[,] { } // add seeds here
             );
@@ -124,9 +120,9 @@ public class TerraGenerator : MonoBehaviour {
             for (int n = 0; n < islands.Length; n++) {
                 if (i == islands[n].growthDelay) {
                     for (int j = 0; j < islands[n].seeds.GetLength(0); j++) {
-                        chunkCA.cells[(int)islands[n].location.x + islands[n].seeds[j, 0],
-                                 (int)islands[n].location.y + islands[n].seeds[j, 1]] =
-                                 islands[n].seeds[j, 2];
+                        int x = (int)islands[n].location.x + islands[n].seeds[j, 0];
+                        int y = (int)islands[n].location.y + islands[n].seeds[j, 1];
+                        chunkCA.cells[x, y] = islands[n].seeds[j, 2];
                     }
                 }
             }
@@ -149,7 +145,7 @@ public class TerraGenerator : MonoBehaviour {
 
         // interpolate the larger world chunks
 
-        // set cells of main CA to chunkCA and scale
+        // set cells of land CA to chunkCA and scale
 
         for (int i = 0; i < landTileCA.GetXsize(); i++) {
             for (int j = 0; j < landTileCA.GetYsize(); j++) {
@@ -157,19 +153,22 @@ public class TerraGenerator : MonoBehaviour {
                 int chunkY = j / blockSize;
                 //if(Mathf.PerlinNoise(i, j) > 0.5f) {
                 if (chunkCA.cells[chunkX, chunkY] == 0) {
+                    // remove some lagoons
                     if (chunkCA.GetLiveNeighbours(chunkX, chunkY) == 8 && UnityEngine.Random.value > 0.05f) {
                         chunkCA.cells[chunkX, chunkY] = 1;
                     } else {
                         continue;
                     }
 
+                    // add some noise to the ocean tiles to add variation
                     if(UnityEngine.Random.value > 0.05f) {
-                        landTileCA.cells[i, j] = (int)UnityEngine.Random.Range(0f, 9.99f);
+                        landTileCA.cells[i, j] = UnityEngine.Random.Range(0, landTileCA.numStates);
                     }
                 }
 
+                // set the land tile CA cells to the chunk CA cell value * 3 (number of land tile types) + a random number from 0 to 2 
                 if(UnityEngine.Random.value > 0.3f) {
-                    landTileCA.cells[i, j] = (chunkCA.cells[chunkX, chunkY] * 3) + (int)UnityEngine.Random.Range(0f, 2.9999f);  // maybe distribute so that each large scale cell eg for ground has a mostly uniform value (of either 1, 2 or 3 in case of ground) that is mildly deviated from using perlin noise to the other cell vals for cell type (ground, forest, mountain)
+                    landTileCA.cells[i, j] = (chunkCA.cells[chunkX, chunkY] * 3) + UnityEngine.Random.Range(0, 3);  // maybe distribute so that each large scale cell eg for ground has a mostly uniform value (of either 1, 2 or 3 in case of ground) that is mildly deviated from using perlin noise to the other cell vals for cell type (ground, forest, mountain)
                 }
                 //else {
                 //    ca.cells[i, j] = (int)(1.0f + (Mathf.PerlinNoise(i, j) * 3.0f));
@@ -201,7 +200,7 @@ public class TerraGenerator : MonoBehaviour {
                 chunkX = i / blockSize;
                 chunkY = j / blockSize;
                 if (chunkCA.cells[chunkX, chunkY] == 1) {
-                    houseCA.cells[i,j] = (int)UnityEngine.Random.Range(1f, 2.9999f);
+                    houseCA.cells[i,j] = UnityEngine.Random.Range(1, 3); // 1 or 2
 
                     if (UnityEngine.Random.value < 0.05f) {
                         GameObject denizen = Instantiate(denizenPrefab, new Vector3(i + UnityEngine.Random.Range(-5f, 5f), j + UnityEngine.Random.Range(-5f, 5f), 0), Quaternion.identity);
@@ -213,7 +212,7 @@ public class TerraGenerator : MonoBehaviour {
 
         // 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 1, 0, 0, 0, 0, 0
         // 0, 0, 1, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0
-        houseCA.ruleSet = new int[] { 0, 0, 1, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        houseCA.ruleSet = rulesets["house"];
         //houseCA.SetLambdaRuleset(0.4f);
         //Debug.Log("House ruleset: " + string.Join(", ", houseCA.ruleSet));
 
