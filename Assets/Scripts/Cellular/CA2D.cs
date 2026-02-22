@@ -57,6 +57,10 @@
         for(int i = 0; i < iterations; i++) Update();
     }
 
+    public int GetCell(int x, int y) {
+        return cells[x, y];
+    }
+
     public int GetXsize() {
         return cells.GetLength(0);
     }
@@ -74,6 +78,10 @@
             }
         }
         return tot;
+    }
+
+    public void SetCell(int x, int y, int state) {
+        cells[x, y] = state;
     }
 
     public void SetRandomStates(double p = 0.5d) {

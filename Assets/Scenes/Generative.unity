@@ -3379,23 +3379,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chunkCellIterations: 11
   upscaleCellIterations: 4
-  groundTilemap: {fileID: 1208939083}
-  overgroundTilemap: {fileID: 368938735}
-  groundTiles:
-  - {fileID: 11400000, guid: 1ec68ad8cdf087a48a872d2099187147, type: 2}
-  - {fileID: 11400000, guid: bcda460b8e1016d4a81c3d6f60393341, type: 2}
-  - {fileID: 11400000, guid: dce99fe37260b354dac66eca62c72327, type: 2}
-  forestTiles:
-  - {fileID: 11400000, guid: 79715a286b732414aa8161f17a9f473e, type: 2}
-  - {fileID: 11400000, guid: c9e753076b7578349bde9362aee23ee3, type: 2}
-  - {fileID: 11400000, guid: 311ced0b5159d4749843c0be1e08e6f0, type: 2}
-  mountainTiles:
-  - {fileID: 11400000, guid: 2d6096e79b8950a4e9432ebd94dc0c7b, type: 2}
-  - {fileID: 11400000, guid: d6c152d1b0f82374aba9e787bd3d6b2d, type: 2}
-  - {fileID: 11400000, guid: cf789778bba33d346bd17a0a372a952b, type: 2}
-  houseTiles:
-  - {fileID: 11400000, guid: f4e03f463d66b6e4a91885197384b3b8, type: 2}
-  - {fileID: 11400000, guid: e4b35200e61971a419f35533fc34a946, type: 2}
+  generateSettlements: 0
+  worldRenderer: {fileID: 514007163}
   overgroundLights: {fileID: 840698768}
   denizenParent: {fileID: 166051544}
   denizenPrefab: {fileID: 5598445580029891771, guid: afc252e76b5ae7b4c94f285dfdbf3d20,
@@ -3423,17 +3408,28 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 514007160}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9aa366367df4c484b9c31f59f706e4b5, type: 3}
+  m_Script: {fileID: 11500000, guid: ae294a1ba035553419ebfcc7c600df5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemTypes:
-    food: []
-    tools: []
-  foodPrefab: {fileID: 0}
-  itemPrefab: {fileID: 0}
-  characterPrefab: {fileID: 0}
+  groundTilemap: {fileID: 1208939083}
+  overgroundTilemap: {fileID: 368938735}
+  groundTiles:
+  - {fileID: 11400000, guid: 1ec68ad8cdf087a48a872d2099187147, type: 2}
+  - {fileID: 11400000, guid: bcda460b8e1016d4a81c3d6f60393341, type: 2}
+  - {fileID: 11400000, guid: dce99fe37260b354dac66eca62c72327, type: 2}
+  forestTiles:
+  - {fileID: 11400000, guid: 79715a286b732414aa8161f17a9f473e, type: 2}
+  - {fileID: 11400000, guid: c9e753076b7578349bde9362aee23ee3, type: 2}
+  - {fileID: 11400000, guid: 311ced0b5159d4749843c0be1e08e6f0, type: 2}
+  mountainTiles:
+  - {fileID: 11400000, guid: 2d6096e79b8950a4e9432ebd94dc0c7b, type: 2}
+  - {fileID: 11400000, guid: d6c152d1b0f82374aba9e787bd3d6b2d, type: 2}
+  - {fileID: 11400000, guid: cf789778bba33d346bd17a0a372a952b, type: 2}
+  houseTiles:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3790,6 +3786,65 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2137451953126574581}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &740189394
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 740189397}
+  - component: {fileID: 740189395}
+  m_Layer: 0
+  m_Name: GameManager (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &740189395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740189394}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57638f7127124b84cb0f7d0ad18c4b9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundTilemap: {fileID: 1208939083}
+  overgroundTilemap: {fileID: 368938735}
+  groundTile: {fileID: 11400000, guid: fa74c858ce52e8f43aea7f51770b4016, type: 2}
+  forestTile: {fileID: 11400000, guid: 311ced0b5159d4749843c0be1e08e6f0, type: 2}
+  mountainTile: {fileID: 11400000, guid: 2d6096e79b8950a4e9432ebd94dc0c7b, type: 2}
+  houseTile: {fileID: 11400000, guid: 6aafcca26b9bcd64f9e3b82d1b501963, type: 2}
+  hutTile: {fileID: 11400000, guid: f4e03f463d66b6e4a91885197384b3b8, type: 2}
+  rockTile: {fileID: 11400000, guid: d5889e767630ee840a5aff1437699ed5, type: 2}
+  shrubTile: {fileID: 11400000, guid: 18b25cf11f23fae4aacd79a02ae4c8b7, type: 2}
+  treeTile: {fileID: 11400000, guid: a7c6102bb4337f74e8a924a116bdaab1, type: 2}
+  woodTile: {fileID: 11400000, guid: 966025c1481c28041ba09f6cc16eab7a, type: 2}
+  stoneTile: {fileID: 11400000, guid: ccb31e0661271fa428481440feecbc82, type: 2}
+  cragTile: {fileID: 11400000, guid: f97a6d106d57f8f4d89303b779af12b6, type: 2}
+  peakTile: {fileID: 11400000, guid: 2d6096e79b8950a4e9432ebd94dc0c7b, type: 2}
+  player: {fileID: 47560823}
+--- !u!4 &740189397
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740189394}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &760520248
 GameObject:
   m_ObjectHideFlags: 0
@@ -10893,6 +10948,7 @@ SceneRoots:
   - {fileID: 893586232}
   - {fileID: 47560823}
   - {fileID: 514007162}
+  - {fileID: 740189397}
   - {fileID: 1773494292}
   - {fileID: 1373530044}
   - {fileID: 135353755}

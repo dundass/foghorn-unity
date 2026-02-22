@@ -24,14 +24,9 @@ public class TerraGenerator : MonoBehaviour {
 
     public int chunkCellIterations = 11;
     public int upscaleCellIterations = 2;
+    public bool generateSettlements = false;
 
-    public Tilemap groundTilemap; // poss make separate WorldRenderer
-    public Tilemap overgroundTilemap;
-    //public Tilemap overgroundTilemap; // poss make separate WorldRenderer
-    [SerializeField] TileBase[] groundTiles = new TileBase[3]; // can be grassy-arid -> island variation -> level of grass + dryness so can also get bare moist dirt
-    [SerializeField] TileBase[] forestTiles = new TileBase[3]; // can be determined by types of tree + the soil that is usually associated w them - littlewood, pine, oak -> variation per island, w influence from neighbouring islands, also influence from type of ground as above
-    [SerializeField] TileBase[] mountainTiles = new TileBase[3]; // can also be barren - sometimes don't spawn colliders and use diff sprite for this -> variation per mountain tile on island
-    [SerializeField] TileBase[] houseTiles = new TileBase[2];
+    public WorldRenderer worldRenderer;
 
     public GameObject overgroundLights;
 
@@ -41,13 +36,13 @@ public class TerraGenerator : MonoBehaviour {
     public ProceduralIsland[] islands;
     public Transform player;
 
-    public enum blocktypes {
+    public enum BlockType {
         ground = 1,
         forest = 2,
         mountain = 3
     }
 
-    private CA2D landTileCA, houseCA, chunkCA, oceanCA;
+    public CA2D landTileCA, houseCA, chunkCA;
     /*private enum rulesets {
         island = new int[] { 0, 0, 3, 0, 3, 0, 2, 0, 3, 3, 3, 2, 3, 0, 3, 0, 0, 1, 2, 0, 0, 2, 2, 0, 1, 3, 0, 0, 0, 0, 3, 0 }
     };*/
@@ -91,55 +86,19 @@ public class TerraGenerator : MonoBehaviour {
             ruleSet = islandRuleset
         };
 
-        // generates dynamic texture for ocean tiles
-        oceanCA = new CA2D(4, 32) {
-            ruleSet = islandRuleset
-        };
-
         islands = new ProceduralIsland[30];
 
-        generateWorld();
+        GenerateWorld();
 
-        //generateSettlements(); // todo - this adds 40s+ to startup ...
+        if (generateSettlements)
+            GenerateSettlements(); // todo - this adds 40s+ to startup ...
+
+        worldRenderer.RenderWorld(landTileCA, houseCA);
 
         player.position = new Vector3(islands[0].location.x * blockSize, islands[0].location.y * blockSize, 0);
-
-        // below should probs be all in WorldRenderer
-
-        Debug.Log("starting tile setting loop ...");
-
-        Vector3Int pos = new Vector3Int();
-
-        for (int i = 0; i < landTileCA.GetXsize(); i++) {
-            for (int j = 0; j < landTileCA.GetYsize(); j++) {
-                int chunkX = i / blockSize;
-                int chunkY = j / blockSize;
-
-                pos.Set(i, j, 0);
-                //TileBase tile = groundTiles[0];
-
-                /*if (chunkCA.cells[chunkX, chunkY] == 0) continue;
-                else if (chunkCA.cells[chunkX, chunkY] == 1)
-                    this.groundTilemap.SetTile(pos, ca.cells[i, j] == 0 ? groundTiles[0] : groundTiles[ca.cells[i, j] - 1]);
-                else if (chunkCA.cells[chunkX, chunkY] == 2)
-                    this.groundTilemap.SetTile(pos, ca.cells[i, j] == 0 ? forestTiles[0] : forestTiles[ca.cells[i, j] - 1]);
-                else if (chunkCA.cells[chunkX, chunkY] == 3)
-                    this.groundTilemap.SetTile(pos, ca.cells[i, j] == 0 ? mountainTiles[0] : mountainTiles[ca.cells[i, j] - 1]);*/
-
-                if (landTileCA.cells[i, j] == 0) continue;
-                else if (landTileCA.cells[i, j] > 0 && landTileCA.cells[i, j] < 4) groundTilemap.SetTile(pos, groundTiles[landTileCA.cells[i, j] - 1]);
-                else if (landTileCA.cells[i, j] >= 4 && landTileCA.cells[i, j] < 7) groundTilemap.SetTile(pos, forestTiles[landTileCA.cells[i, j] - 4]);
-                else if (landTileCA.cells[i, j] >= 7 && landTileCA.cells[i, j] < 10) groundTilemap.SetTile(pos, mountainTiles[landTileCA.cells[i, j] - 7]); // else ?
-
-                if (houseCA.cells[i, j] > 0) overgroundTilemap.SetTile(pos, houseTiles[houseCA.cells[i, j] - 1]);
-
-            }
-        }
-
-        Debug.Log("finished tile setting loop !");
     }
 
-    private void generateWorld() {
+    private void GenerateWorld() {
 
         System.Random rnd = new System.Random();
 
@@ -176,7 +135,7 @@ public class TerraGenerator : MonoBehaviour {
 
         Debug.Log("finished island generation !");
 
-        //removeLagoons(4);
+        //RemoveLagoons(4);
 
         /*for (int i = 0; i < chunkCA.GetXsize(); i++) {
             for (int j = 0; j < chunkCA.GetYsize(); j++) {
@@ -231,7 +190,7 @@ public class TerraGenerator : MonoBehaviour {
 
     }
 
-    private void generateSettlements() {
+    private void GenerateSettlements() {
 
         Debug.Log("starting settlement generation ...");
 
@@ -255,15 +214,15 @@ public class TerraGenerator : MonoBehaviour {
         // 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 1, 0, 0, 0, 0, 0
         // 0, 0, 1, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0
         houseCA.ruleSet = new int[] { 0, 0, 1, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-        //houseCA.setLambdaRuleset(0.4f);
-        Debug.Log("House ruleset: " + string.Join(", ", houseCA.ruleSet));
+        //houseCA.SetLambdaRuleset(0.4f);
+        //Debug.Log("House ruleset: " + string.Join(", ", houseCA.ruleSet));
 
         houseCA.Update(5);
 
         Debug.Log("finished settlement generation !");
     }
 
-    /*private void removeLagoons(int max) {   // doesn't work with neighbourTotals cuz that's from last ca iteration ...
+    /*private void RemoveLagoons(int max) {   // doesn't work with neighbourTotals cuz that's from last ca iteration ...
         int[,] buffer = (int[,])ca.cells.Clone();
         for (int i = 0; i < ca.GetXsize(); i++) {
             for (int j = 0; j < ca.GetYsize(); j++) {

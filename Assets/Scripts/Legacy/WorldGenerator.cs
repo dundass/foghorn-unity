@@ -25,7 +25,7 @@ public class WorldGenerator : MonoBehaviour {
     public ProceduralIsland[] islands;
     public Transform player;
 
-    public enum blocktypes {
+    public enum BlockType {
         ground = 1,
         forest = 2,
         mountain = 3
@@ -53,7 +53,7 @@ public class WorldGenerator : MonoBehaviour {
 
         islands = new ProceduralIsland[30];
 
-        generateWorld();
+        GenerateWorld();
 
         player.position = new Vector3(islands[0].location.x * blockSize, islands[0].location.y * blockSize, 0);
 
@@ -80,7 +80,7 @@ public class WorldGenerator : MonoBehaviour {
         }
     }
 
-    private void generateWorld() {
+    private void GenerateWorld() {
 
         System.Random rnd = new System.Random();
         int[,] islandLocations = { { 272, 137 }, { 300, 164 }, { 308, 192 }, { 222, 132 }, { 120, 79 },
@@ -117,7 +117,7 @@ public class WorldGenerator : MonoBehaviour {
             ca.Update();
         }
 
-        removeLagoons(4);
+        RemoveLagoons(4);
 
         for (int i = 0; i < ca.GetXsize(); i++) {
             for (int j = 0; j < ca.GetYsize(); j++) {
@@ -126,7 +126,7 @@ public class WorldGenerator : MonoBehaviour {
                     blockCA.ruleSet = groundTileRuleset;
                     blockCA.SetRandomStates(0.05d);
                     blockCA.Update(3);
-                    Vector3Int loc = new Vector3Int();
+                    Vector3Int loc;
                     for (int k = 0; k < blockSize; k++) {
                         for(int l = 0; l < blockSize; l++) {
                             if(blockCA.cells[k,l] > 0) {
@@ -143,7 +143,7 @@ public class WorldGenerator : MonoBehaviour {
                     blockCA.ruleSet = forestTileRuleset;
                     blockCA.SetRandomStates(0.1d);
                     blockCA.Update(2);
-                    Vector3Int loc = new Vector3Int();
+                    Vector3Int loc;
                     for (int k = 0; k < blockSize; k++) {
                         for (int l = 0; l < blockSize; l++) {
                             if (blockCA.cells[k, l] > 0) {
@@ -160,7 +160,7 @@ public class WorldGenerator : MonoBehaviour {
                     blockCA.ruleSet = mountainTileRuleset;
                     blockCA.SetRandomStates(0.1d);
                     blockCA.Update(4);
-                    Vector3Int loc = new Vector3Int();
+                    Vector3Int loc;
                     for (int k = 0; k < blockSize; k++) {
                         for (int l = 0; l < blockSize; l++) {
                             if (blockCA.cells[k, l] > 0) {
@@ -176,7 +176,7 @@ public class WorldGenerator : MonoBehaviour {
         }
     }
 
-    private void removeLagoons(int max) {   // doesn't work with neighbourTotals cuz that's from last ca iteration ...
+    private void RemoveLagoons(int max) {   // doesn't work with neighbourTotals cuz that's from last ca iteration ...
         int[,] buffer = (int[,])ca.cells.Clone();
         for (int i = 0; i < ca.GetXsize(); i++) {
             for (int j = 0; j < ca.GetYsize(); j++) {
