@@ -941,6 +941,76 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 198655741}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &347653320
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 347653321}
+  - component: {fileID: 347653322}
+  m_Layer: 0
+  m_Name: IslandTester
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &347653321
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347653320}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &347653322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347653320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 168ece0c05ea4174f9578a0622c05522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  islandLocation: {x: 150, y: 100}
+  gridSize: 384
+  growthDelay: 5
+  maxIterations: 11
+  numSeeds: 10
+  minSeedState: 1
+  maxSeedState: 4
+  seedSpreadRange: 8
+  randomSeed: 639074464471467985
+  autoRandomizeSeed: 1
+  rulesetName: island
+  terraGenerator: {fileID: 514007161}
+  worldRenderer: {fileID: 0}
+  lastGenerationIteration: -1
+  previewTexture: {fileID: 0}
+  tileColors:
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
 --- !u!1001 &351690676
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3380,6 +3450,7 @@ MonoBehaviour:
   chunkCellIterations: 11
   upscaleCellIterations: 4
   generateSettlements: 0
+  generateEnvironmentalProps: 0
   worldRenderer: {fileID: 514007163}
   overgroundLights: {fileID: 840698768}
   denizenParent: {fileID: 166051544}
@@ -3430,6 +3501,18 @@ MonoBehaviour:
   houseTiles:
   - {fileID: 0}
   - {fileID: 0}
+  groundPropTiles:
+  - {fileID: 11400000, guid: 99e068d0fae240349af77672f3df323e, type: 2}
+  - {fileID: 11400000, guid: d5889e767630ee840a5aff1437699ed5, type: 2}
+  - {fileID: 11400000, guid: 5170ba4c205ffb84fb4753e37549727f, type: 2}
+  forestPropTiles:
+  - {fileID: 11400000, guid: 5b95923d61e48cf42a90d963993b58c5, type: 2}
+  - {fileID: 11400000, guid: b9cf20136b57d1546a1c9545731751af, type: 2}
+  - {fileID: 11400000, guid: 2d319ae3cb3c9754c8d6fd63881f52ee, type: 2}
+  mountainPropTiles:
+  - {fileID: 11400000, guid: ab1ba1ee9fed0a948b4eeae323833558, type: 2}
+  - {fileID: 11400000, guid: a73cb0cb011bedf4caa2617b53d28d71, type: 2}
+  - {fileID: 11400000, guid: d1a44ce18e128894a80783c51ac87fb7, type: 2}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -4442,11 +4525,11 @@ RectTransform:
   - {fileID: 1012183109}
   m_Father: {fileID: 1773494292}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 499.8, y: 145.5}
-  m_SizeDelta: {x: -1034.4, y: -325.7}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -50}
+  m_SizeDelta: {x: 175, y: 300}
+  m_Pivot: {x: 1, y: 1}
 --- !u!222 &899543803
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4824,10 +4907,10 @@ RectTransform:
   - {fileID: 1550154385}
   m_Father: {fileID: 899543801}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 106.3, y: 128.15}
-  m_SizeDelta: {x: 39.685, y: 41.51}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -25, y: 25}
+  m_SizeDelta: {x: 39.684998, y: 41.509995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1012183110
 MonoBehaviour:
@@ -10955,3 +11038,4 @@ SceneRoots:
   - {fileID: 840698769}
   - {fileID: 166051545}
   - {fileID: 787251443}
+  - {fileID: 347653321}
