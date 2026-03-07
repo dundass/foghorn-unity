@@ -415,12 +415,12 @@ public class IslandTestComponentEditor : Editor
                 int chunkX = i / blockSize;
                 int chunkY = j / blockSize;
                 
-                if (chunkCA.cells[chunkX, chunkY] == 0)
+                if (chunkCA.GetCell(chunkX, chunkY) == 0)
                 {
                     // Remove some lagoons
                     if (chunkCA.GetLiveNeighbours(chunkX, chunkY) == 8 && UnityEngine.Random.value > 0.05f)
                     {
-                        chunkCA.cells[chunkX, chunkY] = 1;
+                        chunkCA.SetCell(chunkX, chunkY, 1);
                     }
                     else
                     {
@@ -429,14 +429,14 @@ public class IslandTestComponentEditor : Editor
 
                     if (UnityEngine.Random.value > 0.05f)
                     {
-                        landCA.cells[i, j] = UnityEngine.Random.Range(0, landCA.numStates);
+                        landCA.SetCell(i, j, UnityEngine.Random.Range(0, landCA.numStates));
                     }
                 }
                 else
                 {
                     if (UnityEngine.Random.value > 0.3f)
                     {
-                        landCA.cells[i, j] = (chunkCA.cells[chunkX, chunkY] * 3) + UnityEngine.Random.Range(0, 3);
+                        landCA.SetCell(i, j, (chunkCA.GetCell(chunkX, chunkY) * 3) + UnityEngine.Random.Range(0, 3));
                     }
                 }
             }

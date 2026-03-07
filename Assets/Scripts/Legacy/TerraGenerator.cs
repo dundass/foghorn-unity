@@ -132,7 +132,7 @@ public class TerraGenerator : MonoBehaviour {
                     foreach (var seed in islands[n].seeds) {
                         int x = (int)islands[n].location.x + seed.Key.x;
                         int y = (int)islands[n].location.y + seed.Key.y;
-                        chunkCA.cells[x, y] = seed.Value;
+                        chunkCA.SetCell(x, y, seed.Value);
                     }
                 }
             }
@@ -163,23 +163,23 @@ public class TerraGenerator : MonoBehaviour {
                 int chunkY = j / blockSize;
                 //if(Mathf.PerlinNoise(i, j) > 0.5f) {
                 // if the tile is water
-                if (chunkCA.cells[chunkX, chunkY] == 0) {
+                if (chunkCA.GetCell(chunkX, chunkY) == 0) {
                     // remove some lagoons
                     if (chunkCA.GetLiveNeighbours(chunkX, chunkY) == 8 && Random.value < lagoonRemovalChance) {
-                        chunkCA.cells[chunkX, chunkY] = 1;
+                        chunkCA.SetCell(chunkX, chunkY, 1);
                     } else {
                         continue;
                     }
 
                     // add some noise to the ocean tiles to add variation
                     if(Random.value > 0.05f) {
-                        landCA.cells[i, j] = Random.Range(1, landCA.numStates);
+                        landCA.SetCell(i, j, Random.Range(1, landCA.numStates));
                     }
                 }
 
                 // set the land tile CA cells to the chunk CA cell value * 3 (number of land tile types) + a random number from 0 to 2 
                 if(Random.value < 0.7f) {
-                    landCA.cells[i, j] = (chunkCA.cells[chunkX, chunkY] * 3) + Random.Range(0, 3);  // maybe distribute so that each large scale cell eg for ground has a mostly uniform value (of either 1, 2 or 3 in case of ground) that is mildly deviated from using perlin noise to the other cell vals for cell type (ground, forest, mountain)
+                    landCA.SetCell(i, j, (chunkCA.GetCell(chunkX, chunkY) * 3) + Random.Range(0, 3));
                 }
                 //else {
                 //    ca.cells[i, j] = (int)(1.0f + (Mathf.PerlinNoise(i, j) * 3.0f));
@@ -210,8 +210,8 @@ public class TerraGenerator : MonoBehaviour {
             for (int j = 0; j < landCA.GetYsize(); j++) {
                 chunkX = i / blockSize;
                 chunkY = j / blockSize;
-                if (chunkCA.cells[chunkX, chunkY] == 1) {
-                    houseCA.cells[i,j] = Random.Range(1, 3); // 1 or 2
+                if (chunkCA.GetCell(chunkX, chunkY) == 1) {
+                    houseCA.SetCell(i, j, Random.Range(1, 3)); // 1 or 2
 
                     if (Random.value < 0.01f) {
                         GameObject denizen = Instantiate(denizenPrefab, new Vector3(i + Random.Range(-5f, 5f), j + Random.Range(-5f, 5f), 0), Quaternion.identity);
@@ -239,8 +239,8 @@ public class TerraGenerator : MonoBehaviour {
         for (int i = 0; i < landCA.GetXsize(); i++) {
             for (int j = 0; j < landCA.GetYsize(); j++) {
                 // if the cell is in the forest range, seed the forest CA
-                if (landCA.cells[i, j] > 3 && landCA.cells[i, j] < 7) {
-                    forestCA.cells[i, j] = Random.Range(1, forestCA.numStates); // 1, 2 or 3
+                if (landCA.GetCell(i, j) > 3 && landCA.GetCell(i, j) < 7) {
+                    forestCA.SetCell(i, j, Random.Range(1, forestCA.numStates)); // 1, 2 or 3
                 }
             }
         }

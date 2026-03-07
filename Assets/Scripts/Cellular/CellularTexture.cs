@@ -17,9 +17,9 @@ public class CellularTexture : MonoBehaviour {
         Color color = new Color();
         for (int i = 0; i < tex.width; i++) {
             for (int j = 0; j < tex.height; j++) {
-                color.r = ca.cells[i, j];
-                color.g = 60 - ca.cells[i, j];
-                color.b = 50 + (ca.cells[i, j] * 2);
+                color.r = ca.GetCell(i, j);
+                color.g = 60 - ca.GetCell(i, j);
+                color.b = 50 + (ca.GetCell(i, j) * 2);
                 // todo - abstract the finer processing away to a collection of functions
                 tex.SetPixel(i, j, color);
             }

@@ -51,7 +51,7 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "foghorn.sln",
+    "dotnet.defaultSolution": "foghorn-unity.sln",
     "omnisharp.projectLoadTimeout": 60,
     "omnisharp.enableEditorConfigSupport": true,
     "omnisharp.enableRoslynAnalyzers": true,

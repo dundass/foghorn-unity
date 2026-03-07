@@ -69,13 +69,13 @@ public class WorldGenerator : MonoBehaviour {
 
         for (int i = 0; i < ca.GetXsize(); i++) {
             for (int j = 0; j < ca.GetYsize(); j++) {
-                if (ca.cells[i, j] == 0) continue;
-                else if (ca.cells[i, j] == 1) tilesArray = groundTilesArray;
-                else if (ca.cells[i, j] == 2) tilesArray = forestTilesArray;
-                else if (ca.cells[i, j] == 3) tilesArray = mountainTilesArray;
+                if (ca.GetCell(i, j) == 0) continue;
+                else if (ca.GetCell(i, j) == 1) tilesArray = groundTilesArray;
+                else if (ca.GetCell(i, j) == 2) tilesArray = forestTilesArray;
+                else if (ca.GetCell(i, j) == 3) tilesArray = mountainTilesArray;
                 area.x = i * blockSize;
                 area.y = j * blockSize;
-                if (ca.cells[i, j] > 0) groundTilemap.SetTilesBlock(area, tilesArray);
+                if (ca.GetCell(i, j) > 0) groundTilemap.SetTilesBlock(area, tilesArray);
             }
         }
     }
@@ -110,18 +110,18 @@ public class WorldGenerator : MonoBehaviour {
                     foreach (var seed in islands[n].seeds) {
                         int x = (int)islands[n].location.x + seed.Key.x;
                         int y = (int)islands[n].location.y + seed.Key.y;
-                        ca.cells[x, y] = seed.Value;
+                        ca.SetCell(x, y, seed.Value);
                     }
                 }
             }
             ca.Update();
         }
 
-        RemoveLagoons(4);
+        //RemoveLagoons(4);
 
         for (int i = 0; i < ca.GetXsize(); i++) {
             for (int j = 0; j < ca.GetYsize(); j++) {
-                if(ca.cells[i,j] == 1) {
+                if(ca.GetCell(i, j) == 1) {
                     // ground block
                     blockCA.ruleSet = groundTileRuleset;
                     blockCA.SetRandomStates(0.05d);
@@ -129,16 +129,16 @@ public class WorldGenerator : MonoBehaviour {
                     Vector3Int loc;
                     for (int k = 0; k < blockSize; k++) {
                         for(int l = 0; l < blockSize; l++) {
-                            if(blockCA.cells[k,l] > 0) {
+                            if(blockCA.GetCell(k, l) > 0) {
                                 loc = new Vector3Int( (i * blockSize) + k, (j * blockSize) + l, 0);
-                                if (blockCA.cells[k,l] == 1) overgroundTilemap.SetTile(loc, houseTile);
-                                else if(blockCA.cells[k,l] == 2) overgroundTilemap.SetTile(loc, hutTile);
-                                else if(blockCA.cells[k,l] == 3) overgroundTilemap.SetTile(loc, rockTile);
+                                if (blockCA.GetCell(k, l) == 1) overgroundTilemap.SetTile(loc, houseTile);
+                                else if(blockCA.GetCell(k, l) == 2) overgroundTilemap.SetTile(loc, hutTile);
+                                else if(blockCA.GetCell(k, l) == 3) overgroundTilemap.SetTile(loc, rockTile);
                             }
                         }
                     }
                 }
-                else if (ca.cells[i, j] == 2) {
+                else if (ca.GetCell(i, j) == 2) {
                     // forest block
                     blockCA.ruleSet = forestTileRuleset;
                     blockCA.SetRandomStates(0.1d);
@@ -146,16 +146,16 @@ public class WorldGenerator : MonoBehaviour {
                     Vector3Int loc;
                     for (int k = 0; k < blockSize; k++) {
                         for (int l = 0; l < blockSize; l++) {
-                            if (blockCA.cells[k, l] > 0) {
+                            if (blockCA.GetCell(k, l) > 0) {
                                 loc = new Vector3Int((i * blockSize) + k, (j * blockSize) + l, 0);
-                                if (blockCA.cells[k, l] == 1) overgroundTilemap.SetTile(loc, shrubTile);
-                                else if (blockCA.cells[k, l] == 2) overgroundTilemap.SetTile(loc, treeTile);
-                                else if (blockCA.cells[k, l] == 3) overgroundTilemap.SetTile(loc, woodTile);
+                                if (blockCA.GetCell(k, l) == 1) overgroundTilemap.SetTile(loc, shrubTile);
+                                else if (blockCA.GetCell(k, l) == 2) overgroundTilemap.SetTile(loc, treeTile);
+                                else if (blockCA.GetCell(k, l) == 3) overgroundTilemap.SetTile(loc, woodTile);
                             }
                         }
                     }
                 }
-                else if (ca.cells[i, j] == 3) {
+                else if (ca.GetCell(i, j) == 3) {
                     // mountain block
                     blockCA.ruleSet = mountainTileRuleset;
                     blockCA.SetRandomStates(0.1d);
@@ -163,11 +163,11 @@ public class WorldGenerator : MonoBehaviour {
                     Vector3Int loc;
                     for (int k = 0; k < blockSize; k++) {
                         for (int l = 0; l < blockSize; l++) {
-                            if (blockCA.cells[k, l] > 0) {
+                            if (blockCA.GetCell(k, l) > 0) {
                                 loc = new Vector3Int((i * blockSize) + k, (j * blockSize) + l, 0);
-                                if (blockCA.cells[k, l] == 1) overgroundTilemap.SetTile(loc, stoneTile);
-                                else if (blockCA.cells[k, l] == 2) overgroundTilemap.SetTile(loc, cragTile);
-                                else if (blockCA.cells[k, l] == 3) overgroundTilemap.SetTile(loc, peakTile);
+                                if (blockCA.GetCell(k, l) == 1) overgroundTilemap.SetTile(loc, stoneTile);
+                                else if (blockCA.GetCell(k, l) == 2) overgroundTilemap.SetTile(loc, cragTile);
+                                else if (blockCA.GetCell(k, l) == 3) overgroundTilemap.SetTile(loc, peakTile);
                             }
                         }
                     }
@@ -176,7 +176,7 @@ public class WorldGenerator : MonoBehaviour {
         }
     }
 
-    private void RemoveLagoons(int max) {   // doesn't work with neighbourTotals cuz that's from last ca iteration ...
+/*     private void RemoveLagoons(int max) {   // doesn't work with neighbourTotals cuz that's from last ca iteration ...
         int[,] buffer = (int[,])ca.cells.Clone();
         for (int i = 0; i < ca.GetXsize(); i++) {
             for (int j = 0; j < ca.GetYsize(); j++) {
@@ -184,5 +184,5 @@ public class WorldGenerator : MonoBehaviour {
             }
         }
         ca.cells = (int[,])buffer.Clone();
-    }
+    } */
 }
